@@ -16,7 +16,7 @@ const pagesData: RouterType[] = [
     },
     {
         path: "*",
-        element: <Navigate to="/metrics" />,
+        element: <Navigate to="/not-found" />,
         title: "default"
     }
 ];

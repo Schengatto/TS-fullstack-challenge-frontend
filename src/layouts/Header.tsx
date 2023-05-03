@@ -17,7 +17,7 @@ const Component = styled.div`
 const Header: FunctionComponent = () => {
     return (
         <Component>
-            <div className="header__content">Viceversa frontend challange</div>
+            <div className="header__content">Frontend challange React App</div>
         </Component>
     );
 };

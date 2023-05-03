@@ -2,7 +2,6 @@ import { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const Component = styled.div`
-
     .footer__content {
         position: fixed;
         bottom: 0;
