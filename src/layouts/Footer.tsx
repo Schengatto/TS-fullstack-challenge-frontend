@@ -16,9 +16,11 @@ const Component = styled.div`
 
 const Footer: FunctionComponent = () => {
     return (
-        <Component>
-            <div className="footer__content">Made in React with ❤️ by Enrico Schintu</div>
-        </Component>
+        <footer>
+            <Component>
+                <div className="footer__content">Made in React with ❤️ by Enrico Schintu</div>
+            </Component>
+        </footer>
     );
 };
 

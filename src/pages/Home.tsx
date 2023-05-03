@@ -11,7 +11,7 @@ const Component = styled.div`
         text-align: center;
 
         div {
-            width: 400px;
+            width: 340px;
             margin: auto;
         }
 `;
@@ -35,7 +35,7 @@ const Home: FunctionComponent = () => {
         <Component>
             <Card footer={footerContent} header={headerContent}>
                 <div>
-                    <h2>Challenge Tecnica per Front End Software Engineer</h2>
+                    <h2>Front End Software Engineer Thecnical Challenge</h2>
                 </div>
             </Card>
         </Component>

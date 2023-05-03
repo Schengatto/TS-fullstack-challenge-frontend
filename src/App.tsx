@@ -11,17 +11,13 @@ const MainContainer = styled.main`
 
 const App: FunctionComponent = () => {
     return (
-        <div>
-            <header>
-                <Header />
-            </header>
+        <>
+            <Header />
             <MainContainer>
                 <RouterProvider router={Router} />
             </MainContainer>
-            <footer>
-                <Footer />
-            </footer>
-        </div>
+            <Footer />
+        </>
     );
 };
 
