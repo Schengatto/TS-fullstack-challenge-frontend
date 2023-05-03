@@ -11,13 +11,14 @@ const Component = styled.div`
         color: #1a1238 ;
         font-variant: small-caps;
         z-index: 10;
+        font-size: 16pt;
     }
 `;
 
 const Header: FunctionComponent = () => {
     return (
         <Component>
-            <div className="header__content">Frontend challange React App</div>
+            <div className="header__content">Frontend challange</div>
         </Component>
     );
 };

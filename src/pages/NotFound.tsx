@@ -13,10 +13,13 @@ const Component = styled.div`
 const NotFound: FunctionComponent = () => {
     return (
         <Component>
-            <h2>Element not found...</h2>
-            <p>
-                <Link to="/">Go to the home page</Link>
-            </p>
+            <img height="80" src={require("../assets/images/404.png")} alt="error" className="animate__animated animate__zoomIn" />
+            <div>
+                <h2>Element not found...</h2>
+                <p>
+                    <Link to="/">Go to the home page</Link>
+                </p>
+            </div>
         </Component>
     );
 };

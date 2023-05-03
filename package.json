@@ -4,6 +4,7 @@
   "private": true,
   "author": "schintu.enrico@gmail.com",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.8.2",
@@ -16,16 +17,15 @@
   "devDependencies": {
     "@babel/preset-typescript": "7.21.0",
     "@cypress/webpack-dev-server": "3.3.0",
-    "@storybook/addon-actions": "6.5.16",
-    "@storybook/addon-essentials": "6.5.16",
-    "@storybook/addon-interactions": "6.5.16",
-    "@storybook/addon-links": "6.5.16",
-    "@storybook/builder-webpack5": "6.5.16",
-    "@storybook/manager-webpack5": "6.5.16",
-    "@storybook/node-logger": "6.5.16",
-    "@storybook/preset-create-react-app": "4.1.2",
-    "@storybook/react": "6.5.16",
-    "@storybook/testing-library": "0.0.13",
+    "@storybook/addon-actions": "7.0.8",
+    "@storybook/addon-essentials": "7.0.8",
+    "@storybook/addon-interactions": "7.0.8",
+    "@storybook/addon-links": "7.0.8",
+    "@storybook/node-logger": "7.0.8",
+    "@storybook/preset-create-react-app": "7.0.8",
+    "@storybook/react": "7.0.8",
+    "@storybook/react-webpack5": "7.0.8",
+    "@storybook/testing-library": "0.1.0",
     "@testing-library/cypress": "9.0.0",
     "@testing-library/dom": "9.0.0",
     "@testing-library/jest-dom": "5.16.5",
@@ -45,6 +45,7 @@
     "mochawesome-merge": "4.2.1",
     "mochawesome-report-generator": "6.2.0",
     "prop-types": "15.8.1",
+    "storybook": "7.0.8",
     "styled-components": "5.3.6",
     "webpack": "5.75.0",
     "webpack-cli": "5.0.1"
@@ -59,8 +60,8 @@
     "e2e:cypress:edge-live": "cypress run --browser edge --spec \"cypress/e2e/**/*\" --headed",
     "e2e:cypress:firefox": "cypress run --browser firefox --spec \"cypress/e2e/**/*\" --headless",
     "e2e:cypress:firefox-live": "cypress run --browser firefox --spec \"cypress/e2e/**/*\" --headed",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "storybook dev -p 6006 -s public",
+    "build-storybook": "storybook build -s public"
   },
   "eslintConfig": {
     "extends": [
