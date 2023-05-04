@@ -5,19 +5,22 @@ import PageNavigator from "./PageNavigator";
 import SearchBar from "./SearchBar";
 
 const Component = styled.div`
-    background-color: #f2f0fa;
-    padding: 0.5rem 0;
+    background-color: var(--primary-bg-color);
+    border: 5px solid var(--primary-bg-color);
 
     .table__pre-append {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0;
+
+        .table__title {
+            margin: 0 0.5rem;
+        }
     }
 
     .table {
         width: 100%;
         background-color: #ffffff;
-        border-radius: 0.25rem;
 
         .table__filters {
             display: flex;
@@ -55,8 +58,8 @@ const Component = styled.div`
                 tr {
                     cursor: pointer;
                     &:hover {
-                        background-color: #777188;
-                        color: #dfdede;
+                        background-color: var(--primary-hover-bg-color);
+                        color: var(--primary-hover-text-color);
                     }
                 }
             }
@@ -76,14 +79,15 @@ export interface TableProps {
     headers: TableHeaderInfo[];
     items: any[];
     searchKey: string;
+    footer?: ReactNode;
     onRowClick: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, onRowClick }) => {
-    const [ filteredItems, setFilteredItems ] = useState<any[]>([]);
-    const [ pageItems, setPageItems ] = useState<any[]>([]);
-    const [ pageInfo, setPageInfo ] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
-    const [ searchTerm, setSearchTerm ] = useState<string>("");
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, onRowClick }) => {
+    const [filteredItems, setFilteredItems] = useState<any[]>([]);
+    const [pageItems, setPageItems] = useState<any[]>([]);
+    const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
         const matchTerms = items.filter(item => item[searchKey].toLowerCase().includes(searchTerm.toLowerCase()));
@@ -92,7 +96,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         const to = pageInfo.pageSize + ((pageInfo.pageNumber - 1) * pageInfo.pageSize);
         const pageItems = matchTerms.slice(from, to);
         setPageItems(pageItems);
-    }, [ pageInfo, items, searchKey, searchTerm ]);
+    }, [pageInfo, items, searchKey, searchTerm]);
 
     const handleSearch = (term: string) => {
         setSearchTerm(term);
@@ -113,7 +117,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
     return (
         <Component>
             <div className="table__pre-append">
-                <div>
+                <div className="table__title">
                     <strong>{title}</strong>
                 </div>
                 {pageInfo && <PageNavigator {...pageInfo} pageCount={pageCount} onPageChange={handlePageChange} />}
@@ -144,6 +148,9 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
                         </div>
                     )
                 }
+            </div>
+            <div className="table__actions">
+                {footer}
             </div>
         </Component>
     );

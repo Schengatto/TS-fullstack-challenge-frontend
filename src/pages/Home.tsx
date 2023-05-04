@@ -21,7 +21,7 @@ const Home: FunctionComponent = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (start) {
-            setTimeout(() => navigate("/not-found"), 500);
+            setTimeout(() => navigate("/orders-management"), 500);
         }
     }, [navigate, start]);
 

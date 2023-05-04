@@ -6,18 +6,21 @@ const Component = styled.button`
     cursor: pointer;
     display: block;
     width: 100%;
-    color: #dfdede;
-    background-color: #191238;
+    color: var(--primary-text-color);
+    background-color: var(--primary-bg-color);
     padding: 0.75em;
     border: 0;
+    font-size: 12pt;
+    font-variant: small-caps;
 
     &:hover {
-        background-color: #777188;
+        background-color: var(--primary-hover-bg-color);
+        color: var(--primary-hover-text-color);
     }
 
     &:disabled {
-        color: #c4c2ca;
-        background-color: #F1F2F3;
+        color: var(--primary-disabled-text-color);
+        background-color: var(--primary-disabled-bg-color);
         cursor: default;
     }
 `;

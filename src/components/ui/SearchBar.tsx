@@ -11,7 +11,7 @@ const Component = styled.div`
     display: flex;
 
     &:focus-within {
-        border: 1px solid #191238;
+        border: 1px solid var(--primary-bg-color);
         box-sizing: border-box;
     }
 

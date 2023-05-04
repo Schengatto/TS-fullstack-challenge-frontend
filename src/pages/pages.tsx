@@ -3,12 +3,19 @@ import { Navigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import Error from "./Error";
 import Home from "./Home";
+import ListOrders,  { retrieveOrders } from "./orders-management/OrdersList";
 
 const pagesData: RouterType[] = [
     {
         path: "/",
         element: <Home />,
-        title: "home"
+        title: "home",
+    },
+    {
+        path: "/orders-management",
+        element: <ListOrders />,
+        title: "list-orders",
+        loader: retrieveOrders
     },
     {
         path: "not-found",
@@ -22,7 +29,7 @@ const pagesData: RouterType[] = [
     },
     {
         path: "*",
-        element: <Navigate to="/" />,
+        element: <Navigate to="/not-found" />,
         title: "default"
     }
 ];
