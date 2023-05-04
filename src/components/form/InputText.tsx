@@ -55,9 +55,10 @@ export interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
     type?: "text" | "number" | "email" | "password";
     description?: string;
     value?: string | number;
+    required?: boolean
 }
 
-const InputText: FunctionComponent<InputTextProps> = React.forwardRef<HTMLInputElement, InputTextProps>(({ value, label, type, description, ...rest }, ref: LegacyRef<HTMLInputElement>) => {
+const InputText: FunctionComponent<InputTextProps> = React.forwardRef<HTMLInputElement, InputTextProps>(({ value, label, type, description, required, ...rest }, ref: LegacyRef<HTMLInputElement>) => {
 
     const styleClass = value !== undefined ? "valued" : "";
 
@@ -76,7 +77,7 @@ const InputText: FunctionComponent<InputTextProps> = React.forwardRef<HTMLInputE
                     className={styleClass}
                     htmlFor={label}
                     data-test="InputText_Label">
-                    {label}
+                    {label}{required && " (required)"}
                 </label>
             </div>
             {description && <div className="input-text__description">{description}</div>}

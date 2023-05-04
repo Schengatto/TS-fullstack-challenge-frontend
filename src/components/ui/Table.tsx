@@ -8,6 +8,11 @@ const Component = styled.div`
     background-color: var(--primary-bg-color);
     border: 5px solid var(--primary-bg-color);
 
+    &.disabled {
+        background-color: var(--primary-disabled-bg-color);
+        border: 5px solid var(--primary-disabled-bg-color);
+    }
+
     .table__pre-append {
         display: flex;
         justify-content: space-between;
@@ -61,7 +66,16 @@ const Component = styled.div`
                         background-color: var(--primary-hover-bg-color);
                         color: var(--primary-hover-text-color);
                     }
+
+                    &.disabled {
+                        cursor: default;
+                        &:hover {
+                            background-color: transparent;
+                            color: inherit;
+                        }
+                    }
                 }
+                
             }
         }
     }
@@ -80,14 +94,15 @@ export interface TableProps {
     items: any[];
     searchKey: string;
     footer?: ReactNode;
+    readonly?: boolean;
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, onRowClick }) => {
-    const [ filteredItems, setFilteredItems ] = useState<any[]>([]);
-    const [ pageItems, setPageItems ] = useState<any[]>([]);
-    const [ pageInfo, setPageInfo ] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
-    const [ searchTerm, setSearchTerm ] = useState<string>("");
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, onRowClick }) => {
+    const [filteredItems, setFilteredItems] = useState<any[]>([]);
+    const [pageItems, setPageItems] = useState<any[]>([]);
+    const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
         const matchTerms = items.filter(item => item[searchKey].toLowerCase().includes(searchTerm.toLowerCase()));
@@ -96,7 +111,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         const to = pageInfo.pageSize + ((pageInfo.pageNumber - 1) * pageInfo.pageSize);
         const pageItems = matchTerms.slice(from, to);
         setPageItems(pageItems);
-    }, [ pageInfo, items, searchKey, searchTerm ]);
+    }, [pageInfo, items, searchKey, searchTerm]);
 
     const handleSearch = (term: string) => {
         setSearchTerm(term);
@@ -115,7 +130,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
     const emptyTable = (<div className="table__no-data">No results</div>);
 
     return (
-        <Component>
+        <Component className={readonly ? "disabled" : ""}>
             <div className="table__pre-append">
                 <div className="table__title">
                     <strong>{title}</strong>
@@ -142,7 +157,15 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {pageItems.map((item: any, index: number) => (<tr key={index} onClick={handleRowClick.bind(this, item)} data-test={`Table_Row_${index}`}>{parseRow(item, index)}</tr>))}
+                                    {pageItems.map((item: any, index: number) => (
+                                        <tr
+                                            key={index}
+                                            onClick={handleRowClick.bind(this, item)}
+                                            data-test={`Table_Row_${index}`}
+                                            className={readonly ? "disabled" : ""}>
+                                            {parseRow(item, index)}
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

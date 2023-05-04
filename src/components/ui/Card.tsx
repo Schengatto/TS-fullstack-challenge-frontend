@@ -10,11 +10,6 @@ const Component = styled.div`
         border-bottom: 2px solid #f2f0fa;
         padding: 1rem;
     }
-
-    .card__footer {
-        border-top: 2px solid #f2f0fa;
-        padding: 1rem;
-    }
 `;
 
 export interface CardProps {

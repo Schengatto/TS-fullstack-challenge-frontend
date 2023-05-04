@@ -55,9 +55,10 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> 
     label: string;
     value?: string;
     description?: string;
+    required?: boolean;
 }
 
-const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(({ value, label, description, ...rest }, ref: LegacyRef<HTMLTextAreaElement>) => {
+const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(({ value, label, description, required, ...rest }, ref: LegacyRef<HTMLTextAreaElement>) => {
 
     const styleClass = value !== undefined ? "valued" : "";
 
@@ -76,7 +77,7 @@ const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextArea
                     className={styleClass}
                     htmlFor={label}
                     data-test="InputText_Label">
-                    {label}
+                    {label} {required && " (required)"}
                 </label>
             </div>
             {description && <div className="text-area__description">{description}</div>}
