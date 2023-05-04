@@ -1,20 +1,20 @@
 import React, { FunctionComponent } from "react";
 import Table from "../../components/ui/Table";
 import { Order } from "../../features/orders-management/models/order";
-import orderService from "../../features/orders-management/services/order-service";
+import orordersServiceder from "../../features/orders-management/services/orders-service";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import styled from "styled-components";
 
 export async function retrieveOrders(): Promise<Order[]> {
-    return await orderService.getOrders();
+    return await orordersServiceder.getOrders();
 }
 
 const Component = styled.div`
     margin: 1rem;
 `;
 
-const ListOrders: FunctionComponent = () => {
+const OrdersList: FunctionComponent = () => {
     const navigate = useNavigate();
     const orders = useLoaderData() as Order[] || new Array<Order>();
 
@@ -49,4 +49,4 @@ const ListOrders: FunctionComponent = () => {
     );
 };
 
-export default ListOrders;
+export default OrdersList;

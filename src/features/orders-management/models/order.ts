@@ -10,13 +10,13 @@
  * Cancelled: This means that the order has been cancelled either by the customer or by Amazon.
  */
 
-enum OrderStatus {
-    OrderPlaced,
-    PreparingForShipment,
-    Shipped,
-    Delivered,
-    Delayed,
-    Cancelled,
+export enum OrderStatus {
+    OrderPlaced="ORDER_PLACED",
+    PreparingForShipment="PREPARING_FOR_SHIPMENT",
+    Shipped="SHIPPED",
+    Delivered="DELIVERED",
+    Delayed="DELAYED",
+    Cancelled="CANCELLED",
 }
 
 export interface Order {
