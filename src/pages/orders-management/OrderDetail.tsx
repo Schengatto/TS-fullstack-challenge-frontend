@@ -1,11 +1,14 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { LoaderFunctionArgs, useLoaderData, useNavigate } from "react-router-dom";
-import { NotFoundError } from "../../models/error";
-import ordersService from "../../features/orders-management/services/orders-service";
+import styled from "styled-components";
+import InputText from "../../components/form/InputText";
+import TextArea from "../../components/form/TextArea";
 import Button from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
-import styled from "styled-components";
-import { Order } from "../../features/orders-management/models/order";
+import Table from "../../components/ui/Table";
+import { AddressInfo, Order } from "../../features/orders-management/models/order";
+import ordersService from "../../features/orders-management/services/orders-service";
+import { NotFoundError } from "../../models/error";
 
 export async function retrieveOrder({ params }: LoaderFunctionArgs): Promise<Order> {
     if (!params.id) {
@@ -13,10 +16,22 @@ export async function retrieveOrder({ params }: LoaderFunctionArgs): Promise<Ord
     }
     const order = await ordersService.getOrder(params.id);
     if (!order) {
-        throw new NotFoundError(`Uh oh, I couldn't find an order with id "${params.id}"`);
+        throw new NotFoundError(`Oops, there isn't an order with id "${params.id}"`);
     }
     return order;
 }
+
+export const Component = styled.div`
+    .detail__row {
+        display: flex;
+        margin: 1rem 0;
+        column-gap: 1rem;
+
+        div {
+            flex: 1
+        }
+    }
+`;
 
 export const ButtonsGroup = styled.div`
     display: flex;
@@ -65,6 +80,13 @@ const OrderDetail: FunctionComponent = () => {
         </ButtonsGroup>
     );
 
+    const packagesTableHeaders = [
+        { key: "id", label: "ID" },
+        { key: "supplier", label: "Supplier City", parseFunction: (supplier: AddressInfo) => supplier.city },
+        { key: "recipient", label: "Recipient City", parseFunction: (recipient: AddressInfo) => recipient.city },
+        { key: "notes", label: "Notes" }
+    ];
+
     // const orderChart = (<OrderChart order={currentOrder}></OrderChart>);
     // const amountsForm = (
     //     <OrderAmountsForm
@@ -73,14 +95,26 @@ const OrderDetail: FunctionComponent = () => {
     //         onSubmit={handleUpdateOrder} />
     // );
     return (
-        <>
+        <Component>
             <Card footer={!isEditMode && viewModeActions}>
-                <div>
-                    {/* {isEditMode ? amountsForm : orderChart} */}
-                    <pre>{JSON.stringify(order, undefined, 2)}</pre>
+                {/* {isEditMode ? amountsForm : orderChart} */}
+                <div className="detail__row">
+                    <InputText label="id" type="text" value={order.id} disabled />
+                    <InputText label="Invoice number" type="text" value={order.invoiceId} disabled />
                 </div>
+                <div className="detail__row">
+                    <TextArea label="Notes" type="text" value={order.notes} disabled />
+                </div>
+                <div>
+                    <Table
+                        title='Packages'
+                        headers={packagesTableHeaders}
+                        items={order.packages}
+                        searchKey="id" />
+                </div>
+                {/* <pre>{JSON.stringify(order, undefined, 2)}</pre> */}
             </Card>
-        </>
+        </Component>
     );
 };
 

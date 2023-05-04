@@ -3,7 +3,45 @@ import { Order, OrderStatus } from "../models/order";
 const CHALLENGE_API_KEY = "challengeApiKey";
 
 const orders: Order[] = [
-    { id: "0001", status: OrderStatus.OrderPlaced, packages: [], invoiceId: "A001" }
+    {
+        id: "0001",
+        status: OrderStatus.OrderPlaced,
+        packages: [
+            {
+                id: "P0001",
+                recipient: {
+                    address: "Via scura",
+                    city: "Milano",
+                    coordinates: { latitude: 10, longitude: 20 },
+                    postalCode: "20222",
+                },
+                supplier: {
+                    address: "Via rossa",
+                    city: "Bologna",
+                    coordinates: { latitude: 40, longitude: 50 },
+                    postalCode: "20221",
+                },
+            },
+            {
+                id: "P0002",
+                recipient: {
+                    address: "Via verde",
+                    city: "Venezia",
+                    coordinates: { latitude: 60, longitude: 30 },
+                    postalCode: "20223",
+                },
+                supplier: {
+                    address: "Via rossa",
+                    city: "Bologna",
+                    coordinates: { latitude: 40, longitude: 50 },
+                    postalCode: "20221",
+                },
+                notes: "Fragile"
+            },
+        ],
+        invoiceId: "A001",
+        notes: "Consegnare entro fine mese"
+    },
 ];
 
 class OrdersService {
@@ -14,7 +52,7 @@ class OrdersService {
     }
 
     async getOrders(): Promise<Order[]> {
-        await this.delay(1000);
+        await this.delay(500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }
@@ -22,7 +60,7 @@ class OrdersService {
     }
 
     async getOrder(id: string): Promise<Order | undefined> {
-        await this.delay(1000);
+        await this.delay(500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }
@@ -30,7 +68,7 @@ class OrdersService {
     }
 
     async addOrder(order: Order): Promise<boolean> {
-        await this.delay(1000);
+        await this.delay(500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }
@@ -39,7 +77,7 @@ class OrdersService {
     }
 
     async updateOrder(order: Order): Promise<boolean> {
-        await this.delay(1000);
+        await this.delay(500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }
@@ -52,7 +90,7 @@ class OrdersService {
     }
 
     async deleteOrder(id: string): Promise<boolean> {
-        await this.delay(1000);
+        await this.delay(500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }

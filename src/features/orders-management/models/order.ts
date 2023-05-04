@@ -24,6 +24,7 @@ export interface Order {
     packages: Package[];
     status: OrderStatus;
     invoiceId: string;
+    notes?: string;
 }
 
 export interface Package {

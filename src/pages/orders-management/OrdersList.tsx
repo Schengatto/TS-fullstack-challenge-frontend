@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import Table from "../../components/ui/Table";
-import { Order } from "../../features/orders-management/models/order";
+import { Order, Package } from "../../features/orders-management/models/order";
 import orordersServiceder from "../../features/orders-management/services/orders-service";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import Button from "../../components/ui/Button";
@@ -11,7 +11,7 @@ export async function retrieveOrders(): Promise<Order[]> {
 }
 
 const Component = styled.div`
-    margin: 1rem;
+    margin: 5rem 1rem;
 `;
 
 const OrdersList: FunctionComponent = () => {
@@ -20,7 +20,8 @@ const OrdersList: FunctionComponent = () => {
 
     const headers = [
         { key: "id", label: "ID" },
-        { key: "status", label: "Status" }
+        { key: "status", label: "Status" },
+        { key: "packages", label: "# packages", parseFunction: (packages: Package[]) => packages.length }
     ];
 
     const handleOrderClick = (order: Order) => navigate(`/orders/${order.id}`);

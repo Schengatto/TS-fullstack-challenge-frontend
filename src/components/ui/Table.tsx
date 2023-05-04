@@ -70,7 +70,7 @@ const Component = styled.div`
 export interface TableHeaderInfo {
     key: string;
     label?: string;
-    parseFunction?: (value: any) => string;
+    parseFunction?: (value: any) => string | number;
 }
 
 export interface TableProps {
@@ -80,14 +80,14 @@ export interface TableProps {
     items: any[];
     searchKey: string;
     footer?: ReactNode;
-    onRowClick: (item: any) => void;
+    onRowClick?: (item: any) => void;
 }
 
 const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, onRowClick }) => {
-    const [filteredItems, setFilteredItems] = useState<any[]>([]);
-    const [pageItems, setPageItems] = useState<any[]>([]);
-    const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
-    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [ filteredItems, setFilteredItems ] = useState<any[]>([]);
+    const [ pageItems, setPageItems ] = useState<any[]>([]);
+    const [ pageInfo, setPageInfo ] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
+    const [ searchTerm, setSearchTerm ] = useState<string>("");
 
     useEffect(() => {
         const matchTerms = items.filter(item => item[searchKey].toLowerCase().includes(searchTerm.toLowerCase()));
@@ -96,7 +96,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         const to = pageInfo.pageSize + ((pageInfo.pageNumber - 1) * pageInfo.pageSize);
         const pageItems = matchTerms.slice(from, to);
         setPageItems(pageItems);
-    }, [pageInfo, items, searchKey, searchTerm]);
+    }, [ pageInfo, items, searchKey, searchTerm ]);
 
     const handleSearch = (term: string) => {
         setSearchTerm(term);
@@ -106,10 +106,10 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
 
     const pageCount = Math.max(Math.ceil(filteredItems.length / pageInfo.pageSize), 1);
 
-    const handleRowClick = (id: string) => onRowClick(id);
+    const handleRowClick = (id: string) => onRowClick && onRowClick(id);
 
     const parseRow = (item: any, index: number) => (headers
-        .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : String(item[header.key]) }))
+        .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : item[header.key] && String(item[header.key]) }))
         .map(row => <td className="item-row" key={row.key}>{row.value}</td>));
 
     const emptyTable = (<div className="table__no-data">No results</div>);
