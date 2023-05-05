@@ -68,7 +68,7 @@ class OrdersService {
     }
 
     async addOrder(order: Order): Promise<boolean> {
-        await this.delay(500);
+        await this.delay(2500);
         if (this.apiKey !== CHALLENGE_API_KEY) {
             return Promise.reject("API Key is not valid!");
         }

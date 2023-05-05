@@ -101,18 +101,21 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                 <div className="form-row">
                     <InputText
                         label="ID"
+                        name="id"
                         type="text"
                         value={formFields.id}
                         disabled />
 
                     <InputText
                         label="Status"
+                        name="status"
                         type="text"
                         value={formFields.status}
                         disabled />
 
                     <InputText
                         label="Invoice number"
+                        name="invoiceId"
                         required type="text"
                         value={formFields.invoiceId}
                         disabled={readonly}
@@ -121,6 +124,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                 <div className="form-row">
                     <TextArea
                         label="Notes"
+                        name="notes"
                         type="text"
                         value={formFields.notes}
                         disabled={readonly}

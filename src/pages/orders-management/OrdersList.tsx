@@ -1,22 +1,27 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Button from "../../components/ui/Button";
 import Table from "../../components/ui/Table";
 import { Order, Package } from "../../features/orders-management/models/order";
-import orordersServiceder from "../../features/orders-management/services/orders-service";
-import { useNavigate, useLoaderData } from "react-router-dom";
-import Button from "../../components/ui/Button";
-import styled from "styled-components";
-
-export async function retrieveOrders(): Promise<Order[]> {
-    return await orordersServiceder.getOrders();
-}
+import orderServices from "../../features/orders-management/services/orders-service";
 
 const Component = styled.div`
     margin: 5rem 1rem;
 `;
 
 const OrdersList: FunctionComponent = () => {
+    const [orders, setOrders] = useState<Order[]>([]);
+    const [isFetchingData, setIsFetchingData] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsFetchingData(true);
+        orderServices.getOrders()
+            .then((orders) => setOrders(orders))
+            .finally(() => setIsFetchingData(false));
+    }, []);
+
     const navigate = useNavigate();
-    const orders = useLoaderData() as Order[] || new Array<Order>();
 
     const headers = [
         { key: "id", label: "ID" },
@@ -44,6 +49,7 @@ const OrdersList: FunctionComponent = () => {
                     headers={headers}
                     searchKey="id"
                     footer={addNewOrderButton}
+                    isLoading={isFetchingData}
                     onRowClick={handleOrderClick} />
             </div>
         </Component>

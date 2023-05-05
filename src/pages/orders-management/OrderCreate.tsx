@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../../components/ui/Card";
@@ -16,13 +16,18 @@ export const PageTitle = styled.div`
 `;
 
 const OrderCreate: FunctionComponent = () => {
+    const [isSaving, setIsSaving] = useState<boolean>(false);
+
     const navigate = useNavigate();
     const handleCancel = () => {
         navigate("/orders");
     };
 
     const handleCreateOrder = async (order: Order) => {
-        await ordersService.addOrder(order);
+        if (isSaving) return;
+
+        setIsSaving(true);
+        await ordersService.addOrder(order).finally(() => setIsSaving(false));
         handleCancel();
     };
 
@@ -32,6 +37,7 @@ const OrderCreate: FunctionComponent = () => {
         <Component>
             <Card header={pageTitle}>
                 <OrderForm
+                    readonly={isSaving}
                     onCancel={handleCancel}
                     onSubmit={handleCreateOrder} />
             </Card>

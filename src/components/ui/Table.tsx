@@ -95,10 +95,11 @@ export interface TableProps {
     searchKey: string;
     footer?: ReactNode;
     readonly?: boolean;
+    isLoading?: boolean;
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, onRowClick }) => {
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, isLoading, onRowClick }) => {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [pageItems, setPageItems] = useState<any[]>([]);
     const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
@@ -127,7 +128,9 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : item[header.key] && String(item[header.key]) }))
         .map(row => <td className="item-row" key={row.key}>{row.value}</td>));
 
-    const emptyTable = (<div className="table__no-data">No results</div>);
+    const emptyTable = isLoading
+        ? (<div className="table__no-data">Loading...</div>)
+        : (<div className="table__no-data">No results</div>);
 
     return (
         <Component className={readonly ? "disabled" : ""}>

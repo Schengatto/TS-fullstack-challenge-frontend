@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import Error from "./Error";
 import Home from "./Home";
-import OrdersList,  { retrieveOrders } from "./orders-management/OrdersList";
+import OrdersList from "./orders-management/OrdersList";
 import OrderDetail, { retrieveOrder } from "./orders-management/OrderDetail";
 import OrderCreate from "./orders-management/OrderCreate";
 
@@ -17,7 +17,6 @@ const pagesData: RouterType[] = [
         path: "orders",
         element: <OrdersList />,
         title: "orders-list",
-        loader: retrieveOrders
     },
     {
         path: "orders/create",
