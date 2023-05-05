@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent} from "react";
 import styled from "styled-components";
 
 const Component = styled.select`
@@ -17,7 +17,7 @@ const Component = styled.select`
 
 export interface Item {
     label: string;
-    value: string | number;
+    value: any;
 }
 
 export interface SelectProps {

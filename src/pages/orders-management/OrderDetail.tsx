@@ -86,7 +86,7 @@ const OrderDetail: FunctionComponent = () => {
 
     const viewModeActions = (
         <ButtonsGroup>
-            <Button label="Back To List" onClick={handleBackToList}></Button>
+            <Button label="Back" onClick={handleBackToList}></Button>
             <Button label="Edit Order" onClick={handleEditOrder.bind(null, true)}></Button>
             <Button label="Delete Order" onClick={handleDeleteOrder}></Button>
         </ButtonsGroup>

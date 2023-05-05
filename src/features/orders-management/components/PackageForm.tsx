@@ -174,7 +174,7 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
                 {!readonly &&
                     <div className="form-actions">
                         <Button label="Cancel" onClick={handleCancel} />
-                        <Button label="Add Package" type="submit" disabled={!isFormValid} />
+                        <Button label={packageInfo ? "Update Package" : "Add Package"} type="submit" disabled={!isFormValid} />
                     </div>
                 }
             </form>

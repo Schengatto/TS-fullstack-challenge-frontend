@@ -6,6 +6,7 @@ import Home from "./Home";
 import OrdersList from "./orders-management/OrdersList";
 import OrderDetail, { retrieveOrder } from "./orders-management/OrderDetail";
 import OrderCreate from "./orders-management/OrderCreate";
+import PlanCreate from "./plan/PlanCreate";
 
 const pagesData: RouterType[] = [
     {
@@ -28,6 +29,11 @@ const pagesData: RouterType[] = [
         element: <OrderDetail />,
         title: "order-detail",
         loader: retrieveOrder
+    },
+    {
+        path: "plan/create",
+        element: <PlanCreate />,
+        title: "create-plan"
     },
     {
         path: "not-found",

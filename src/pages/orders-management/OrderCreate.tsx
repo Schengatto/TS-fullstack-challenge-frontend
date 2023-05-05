@@ -5,14 +5,10 @@ import Card from "../../components/ui/Card";
 import { Order } from "../../features/orders-management/models/order";
 import ordersService from "../../features/orders-management/services/orders-service";
 import OrderForm from "../../features/orders-management/components/OrderForm";
+import PageTitle from "../../components/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;
-`;
-
-export const PageTitle = styled.div`
-    text-align: center;
-    font-variant: small-caps;
 `;
 
 const OrderCreate: FunctionComponent = () => {
@@ -31,7 +27,7 @@ const OrderCreate: FunctionComponent = () => {
         handleCancel();
     };
 
-    const pageTitle = (<PageTitle><h1>Create Order</h1></PageTitle>);
+    const pageTitle = (<PageTitle title="Create Order" />);
 
     return (
         <Component>
