@@ -1,9 +1,8 @@
-export interface AddressInfo {
+export interface AddressInfo extends GeolocationCoordinate {
     owner: string;
     city: string;
     postalCode: string;
     address: string;
-    coordinates: GeolocationCoordinate;
     phoneNumber?: string;
     notes?: string;
 }

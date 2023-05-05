@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { PageInfo } from "../../models/pagination";
 import PageNavigator from "./PageNavigator";
 import SearchBar from "./SearchBar";
+import { getFieldValue } from "../../utils/object-utils";
 
 const Component = styled.div`
     background-color: var(--primary-bg-color);
@@ -19,6 +20,7 @@ const Component = styled.div`
         margin: 0.5rem 0;
 
         .table__title {
+            width: 100%;
             margin: 0 0.5rem;
         }
     }
@@ -40,7 +42,6 @@ const Component = styled.div`
         }
 
         .table__no-data {
-            width: 100%;
             text-align: center;
             padding: 2rem 0;
             text-align: center;
@@ -75,7 +76,6 @@ const Component = styled.div`
                         }
                     }
                 }
-                
             }
         }
     }
@@ -125,7 +125,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
     const handleRowClick = (id: string) => !readonly && onRowClick && onRowClick(id);
 
     const parseRow = (item: any, index: number) => (headers
-        .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : item[header.key] && String(item[header.key]) }))
+        .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}-${header.label}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : getFieldValue(item, header.key) && String(getFieldValue(item, header.key)) }))
         .map(row => <td className="item-row" key={row.key}>{row.value}</td>));
 
     const emptyTable = isLoading
@@ -156,7 +156,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
                             <table>
                                 <thead className="table__table-header">
                                     <tr>
-                                        {headers.map(header => (<th key={header.key}>{header.label ?? header.key}</th>))}
+                                        {headers.map(header => (<th key={header.key + header.label}>{header.label ?? header.key}</th>))}
                                     </tr>
                                 </thead>
                                 <tbody>

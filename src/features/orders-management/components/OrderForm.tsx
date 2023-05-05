@@ -5,10 +5,10 @@ import TextArea from "../../../components/form/TextArea";
 import Button from "../../../components/ui/Button";
 import { generateRandomString } from "../../../utils/string-utils";
 import { Order, OrderStatus } from "../models/order";
-import { AddressInfo } from "../models/address";
 import { Package } from "../models/package";
 import PackageForm from "./PackageForm";
 import Table from "../../../components/ui/Table";
+import { AddressInfo } from "../models/address";
 
 const FormGroup = styled.div`
     .form-row {
@@ -49,6 +49,14 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
     const [selectedPackage, setSelectedPackage] = useState<Package | null | undefined>(undefined);
 
     const isFormValid = formFields.invoiceId && formFields.packages.length > 0;
+    const isEditOrderLocked = !!readonly || selectedPackage !== undefined;
+
+    const packagesTableHeaders = [
+        { key: "code", label: "Code" },
+        { key: "supplierId", label: "Supplier" },
+        { key: "destination", label: "Destination", parseFunction: (destination: AddressInfo) => `${destination.city} (${destination.postalCode})` },
+        { key: "notes", label: "Notes" }
+    ];
 
     const handleSubmit = (event: any): void => {
         event.preventDefault();
@@ -61,22 +69,20 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
         onSubmit(currentOrder);
     };
 
-    const packagesTableHeaders = [
-        { key: "code", label: "Code" },
-        { key: "supplierId", label: "Supplier" },
-        { key: "destination", label: "Destination", parseFunction: (destination: AddressInfo) => `${destination.city} (${destination.postalCode})` },
-        { key: "notes", label: "Notes" }
-    ];
-
     const handleFormFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const name = e.currentTarget.name;
         const value = e.currentTarget.value;
         setFormFields(state => ({ ...state, [name]: value }));
     };
 
-    const handleAddNewPackage = (): void => {
-        setSelectedPackage(null);
-        // setFormFields((state) => ({ ...state, packages: [...state.packages, generateFakePackage()] }))
+    const openNewPackageForm = (): void => setSelectedPackage(null);
+
+    const upsertPackage = (packageInfo: Package) => {
+        if (selectedPackage) {
+            setFormFields(state => ({ ...state, packages: state.packages.filter(p => p.code !== selectedPackage?.code) }));
+        }
+        setFormFields(state => ({ ...state, packages: [...state.packages, packageInfo] }));
+        setSelectedPackage(undefined);
     };
 
     const resetForm = (): void => setFormFields(initialFormState);
@@ -89,8 +95,6 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
     const handleEditPackage = (packageInfo: Package) => {
         setSelectedPackage(packageInfo);
     };
-
-    const isEditOrderLocked = !!readonly || selectedPackage !== undefined;
 
     return (
         <FormGroup>
@@ -145,7 +149,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                 {!isEditOrderLocked && (
                     <div className="form-actions">
                         <Button label="Cancel" onClick={handleCancel} data-test="OrderForm__Button__cancel" />
-                        <Button onClick={handleAddNewPackage} label="Add New Package" data-test="OrderForm__Button__addPackage" />
+                        <Button onClick={openNewPackageForm} label="Add New Package" data-test="OrderForm__Button__addPackage" />
                         <Button label="Save" type="submit" disabled={!isFormValid} data-test="OrderForm__Button__save" />
                     </div>
                 )}
@@ -154,7 +158,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
             {selectedPackage !== undefined &&
                 (<PackageForm
                     packageInfo={selectedPackage}
-                    onSubmit={() => () => console.log("not implemented")}
+                    onSubmit={upsertPackage}
                     onCancel={() => setSelectedPackage(undefined)} />)
             }
         </FormGroup>

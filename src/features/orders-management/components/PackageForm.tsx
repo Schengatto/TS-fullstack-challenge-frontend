@@ -41,14 +41,12 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
         owner: "",
         address: "",
         city: "",
-        coordinates: {
-            latitude: 0,
-            longitude: 0
-        },
+        latitude: 0,
+        longitude: 0,
         postalCode: "",
         notes: "",
         phoneNumber: ""
-    }
+    };
 
     const initialFormState: Package = packageInfo
         ? { ...packageInfo }
@@ -61,6 +59,8 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
         && formFields.destination.address
         && formFields.destination.city
         && formFields.destination.postalCode
+        && formFields.destination.latitude
+        && formFields.destination.longitude
         && formFields.supplierId;
 
     const handleSubmit = (event: any): void => {
@@ -72,6 +72,12 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
         const name = e.currentTarget.name;
         const value = e.currentTarget.value;
         setFormFields(state => ({ ...state, [name]: value }));
+    };
+
+    const handleDestinationFormFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const name = e.currentTarget.name;
+        const value = e.currentTarget.value;
+        setFormFields(state => ({ ...state, destination: { ...state.destination, [name]: value } }));
     };
 
     const resetForm = (): void => setFormFields(initialFormState);
@@ -102,60 +108,59 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
                         onChange={handleFormFieldChange} />
                 </div>
                 <h5>Package Destiantion Info</h5>
-
                 <div className="form-row">
                     <InputText
                         label="Recipient Name"
-                        name="destination.owner"
+                        name="owner"
                         type="text"
                         value={formFields.destination.owner}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                     <InputText
                         label="City"
-                        name="destination.city"
+                        name="city"
                         type="text"
                         value={formFields.destination.city}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                     <InputText
                         label="Postal Code"
-                        name="destination.postalCode"
+                        name="postalCode"
                         type="text"
                         value={formFields.destination.postalCode}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                 </div>
                 <div className="form-row">
                     <InputText
                         label="Road"
-                        name="destination.postalCode"
+                        name="address"
                         type="text"
                         value={formFields.destination.address}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                 </div>
                 <div className="form-row">
                     <InputText
                         label="Latitude"
-                        name="destination.coordinates.latitude"
+                        name="latitude"
                         type="number"
-                        value={formFields.destination.coordinates.latitude}
+                        value={formFields.destination.latitude}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                     <InputText
                         label="Longitude"
-                        name="destination.coordinates.longitude"
+                        name="longitude"
                         type="number"
-                        value={formFields.destination.coordinates.longitude}
+                        value={formFields.destination.longitude}
                         required
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                     <InputText
                         label="Phone number"
-                        name="destination.phoneNumber"
+                        name="phoneNumber"
                         type="text"
                         value={formFields.destination.phoneNumber}
-                        onChange={handleFormFieldChange} />
+                        onChange={handleDestinationFormFieldChange} />
                 </div>
                 <div className="form-row">
                     <TextArea
@@ -169,7 +174,7 @@ const PackageForm: FunctionComponent<PackageFormProps> = ({ packageInfo, readonl
                 {!readonly &&
                     <div className="form-actions">
                         <Button label="Cancel" onClick={handleCancel} />
-                        <Button label="Save" type="submit" disabled={!isFormValid} />
+                        <Button label="Add Package" type="submit" disabled={!isFormValid} />
                     </div>
                 }
             </form>

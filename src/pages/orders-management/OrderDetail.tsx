@@ -7,6 +7,7 @@ import OrderForm from "../../features/orders-management/components/OrderForm";
 import { Order } from "../../features/orders-management/models/order";
 import ordersService from "../../features/orders-management/services/orders-service";
 import { NotFoundError } from "../../models/error";
+import PageTitle from "../../components/PageTitle";
 
 export async function retrieveOrder({ params }: LoaderFunctionArgs): Promise<Order> {
     if (!params.id) {
@@ -31,11 +32,6 @@ export const Component = styled.div`
             flex: 1
         }
     }
-`;
-
-export const PageTitle = styled.div`
-    text-align: center;
-    font-variant: small-caps;
 `;
 
 export const ButtonsGroup = styled.div`
@@ -86,7 +82,7 @@ const OrderDetail: FunctionComponent = () => {
         handleEditOrder(false);
     };
 
-    const viewModeTitle = (<PageTitle><h1>{isEditMode ? "Update Order" : "Order Detail"}</h1></PageTitle>);
+    const viewModeTitle = (<PageTitle title={isEditMode ? "Update Order" : "Order Detail"} />);
 
     const viewModeActions = (
         <ButtonsGroup>

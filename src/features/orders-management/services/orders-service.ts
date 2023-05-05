@@ -13,7 +13,8 @@ const orders: Order[] = [
                     owner: "Topo",
                     address: "Via scura",
                     city: "Milano",
-                    coordinates: { latitude: 10, longitude: 20 },
+                    latitude: 10,
+                    longitude: 20,
                     postalCode: "20222",
                 },
                 supplierId: "S0002",
@@ -24,15 +25,16 @@ const orders: Order[] = [
                     owner: "Matteo Salerno",
                     address: "Via verde",
                     city: "Venezia",
-                    coordinates: { latitude: 60, longitude: 30 },
-                    postalCode: "20223"
+                    latitude: 60,
+                    longitude: 30,
+                    postalCode: "20223",
                 },
                 supplierId: "S0001",
-                notes: "Fragile"
+                notes: "Fragile",
             },
         ],
         invoiceId: "A001",
-        notes: "Consegnare entro fine mese"
+        notes: "Consegnare entro fine mese",
     },
 ];
 
