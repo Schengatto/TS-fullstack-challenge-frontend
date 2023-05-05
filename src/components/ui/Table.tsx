@@ -122,7 +122,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
 
     const pageCount = Math.max(Math.ceil(filteredItems.length / pageInfo.pageSize), 1);
 
-    const handleRowClick = (id: string) => onRowClick && onRowClick(id);
+    const handleRowClick = (id: string) => !readonly && onRowClick && onRowClick(id);
 
     const parseRow = (item: any, index: number) => (headers
         .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : item[header.key] && String(item[header.key]) }))

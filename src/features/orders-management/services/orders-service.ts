@@ -9,33 +9,25 @@ const orders: Order[] = [
         packages: [
             {
                 code: "P0001",
-                recipient: {
+                destination: {
+                    owner: "Topo",
                     address: "Via scura",
                     city: "Milano",
                     coordinates: { latitude: 10, longitude: 20 },
                     postalCode: "20222",
                 },
-                supplier: {
-                    address: "Via rossa",
-                    city: "Bologna",
-                    coordinates: { latitude: 40, longitude: 50 },
-                    postalCode: "20221",
-                },
+                supplierId: "S0002",
             },
             {
                 code: "P0002",
-                recipient: {
+                destination: {
+                    owner: "Matteo Salerno",
                     address: "Via verde",
                     city: "Venezia",
                     coordinates: { latitude: 60, longitude: 30 },
-                    postalCode: "20223",
+                    postalCode: "20223"
                 },
-                supplier: {
-                    address: "Via rossa",
-                    city: "Bologna",
-                    coordinates: { latitude: 40, longitude: 50 },
-                    postalCode: "20221",
-                },
+                supplierId: "S0001",
                 notes: "Fragile"
             },
         ],

@@ -43,6 +43,10 @@ const Component = styled.div`
             top: 5px;
             color: #777188;
         }
+
+        .text-area__required {
+            font-size: 10pt;
+        }
     }
 }
 .text-area__description {
@@ -60,7 +64,7 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> 
 
 const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(({ value, label, description, required, ...rest }, ref: LegacyRef<HTMLTextAreaElement>) => {
 
-    const styleClass = value !== undefined ? "valued" : "";
+    const styleClass = !!value ? "valued" : "";
 
     return (
         <Component>
@@ -77,7 +81,7 @@ const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextArea
                     className={styleClass}
                     htmlFor={label}
                     data-test="InputText_Label">
-                    {label} {required && " (required)"}
+                    {label}{required && <span className="text-area__required"> (required)</span>}
                 </label>
             </div>
             {description && <div className="text-area__description">{description}</div>}

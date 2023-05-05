@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/ui/Button";
 import Table from "../../components/ui/Table";
-import { Order, Package } from "../../features/orders-management/models/order";
+import { Order } from "../../features/orders-management/models/order";
 import orderServices from "../../features/orders-management/services/orders-service";
+import { Package } from "../../features/orders-management/models/package";
 
 const Component = styled.div`
     margin: 5rem 1rem;

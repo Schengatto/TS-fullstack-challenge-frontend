@@ -36,6 +36,10 @@ const Component = styled.div`
             top: 5px;
             color: #777188;
         }
+
+        .input-text__required {
+            font-size: 10pt;
+        }
     }
     input:focus + label
     {
@@ -60,7 +64,7 @@ export interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const InputText: FunctionComponent<InputTextProps> = React.forwardRef<HTMLInputElement, InputTextProps>(({ value, label, type, description, required, ...rest }, ref: LegacyRef<HTMLInputElement>) => {
 
-    const styleClass = value !== undefined ? "valued" : "";
+    const styleClass = ["", undefined, null].includes(String(value)) ? "" : "valued";
 
     return (
         <Component>
@@ -71,13 +75,14 @@ const InputText: FunctionComponent<InputTextProps> = React.forwardRef<HTMLInputE
                     ref={ref}
                     id={label}
                     type={type ?? "text"}
-                    value={value} {...rest}
+                    value={value}
+                    {...rest}
                     data-test="InputText_Input" />
                 <label
                     className={styleClass}
                     htmlFor={label}
                     data-test="InputText_Label">
-                    {label}{required && " (required)"}
+                    {label}{required && <span className="input-text__required"> (required)</span>}
                 </label>
             </div>
             {description && <div className="input-text__description">{description}</div>}

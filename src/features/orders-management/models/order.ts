@@ -9,14 +9,15 @@
  * Delayed: This means that there is a delay in the shipment or delivery of the order.
  * Cancelled: This means that the order has been cancelled either by the customer or by Amazon.
  */
+import { Package } from "./package";
 
 export enum OrderStatus {
-    OrderPlaced="ORDER_PLACED",
-    PreparingForShipment="PREPARING_FOR_SHIPMENT",
-    Shipped="SHIPPED",
-    Delivered="DELIVERED",
-    Delayed="DELAYED",
-    Cancelled="CANCELLED",
+    OrderPlaced = "ORDER_PLACED",
+    PreparingForShipment = "PREPARING_FOR_SHIPMENT",
+    Shipped = "SHIPPED",
+    Delivered = "DELIVERED",
+    Delayed = "DELAYED",
+    Cancelled = "CANCELLED",
 }
 
 export interface Order {
@@ -25,31 +26,4 @@ export interface Order {
     status: OrderStatus;
     invoiceId: string;
     notes?: string;
-}
-
-export interface Package {
-    code: string;
-    supplier: AddressInfo;
-    recipient: AddressInfo;
-    notes?: string;
-}
-
-export interface AddressInfo {
-    city: string;
-    postalCode: string;
-    address: string;
-    coordinates: GeolocationCoordinate;
-    phoneNumber?: string;
-    notes?: string;
-}
-
-export interface GeolocationCoordinate {
-    latitude: number;
-    longitude: number;
-}
-
-export interface Depot {
-    id: string;
-    name: string;
-    address: AddressInfo;
 }
