@@ -12,6 +12,7 @@ import { getUniqueValues } from "../../utils/array-utils";
 import Button from "../../components/ui/Button";
 import Select from "../../components/form/DropDown";
 import { Depot } from "../../features/orders-management/models/depot";
+import InputText from "../../components/form/InputText";
 
 const Component = styled.div`
     margin: 1rem;
@@ -72,7 +73,9 @@ const PlanCreate: FunctionComponent = () => {
                 />
 
                 <form>
+                    <InputText label="prova" value=""/>
                     <Select items={items} onChange={() => null} />
+                    <Button label="Cancel" onClick={handleCancel}></Button>
                     <Button label="Start the new plan"></Button>
                 </form>
             </Card>

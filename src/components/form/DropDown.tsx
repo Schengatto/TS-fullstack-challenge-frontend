@@ -5,9 +5,12 @@ const Component = styled.select`
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 0.35rem 0.85rem;
+    padding: 1rem 0.75rem 0.75rem;
     border: 1px solid #b7b9bb;
     display: flex;
+    background-color: transparent;
+    font-size: 1rem;
+    width: 100%;
 
     &:focus-within {
         border: 1px solid #191238;
