@@ -14,17 +14,17 @@ const pagesData: RouterType[] = [
         title: "home",
     },
     {
-        path: "orders",
+        path: "order",
         element: <OrdersList />,
         title: "orders-list",
     },
     {
-        path: "orders/create",
+        path: "order/create",
         element: <OrderCreate />,
         title: "create-order"
     },
     {
-        path: "orders/:id",
+        path: "order/:id",
         element: <OrderDetail />,
         title: "order-detail",
         loader: retrieveOrder

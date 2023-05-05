@@ -52,7 +52,7 @@ const OrderDetail: FunctionComponent = () => {
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
     const handleBackToList = () => {
-        navigate("/orders");
+        navigate("/order");
     };
 
     const handleEditOrder = (value: boolean) => {

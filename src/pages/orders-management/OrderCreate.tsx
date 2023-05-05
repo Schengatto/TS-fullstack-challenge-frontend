@@ -20,7 +20,7 @@ const OrderCreate: FunctionComponent = () => {
 
     const navigate = useNavigate();
     const handleCancel = () => {
-        navigate("/orders");
+        navigate("/order");
     };
 
     const handleCreateOrder = async (order: Order) => {

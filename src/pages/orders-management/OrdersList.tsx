@@ -45,9 +45,8 @@ const OrdersList: FunctionComponent = () => {
             .finally(() => setIsFetchingData(false));
     }, []);
 
-    const handleOrderClick = (order: Order) => navigate(`/orders/${order.id}`);
-
-    const handleAddNewOrder = () => navigate("/orders/create");
+    const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`);
+    const handleAddNewOrder = () => navigate("/order/create");
     const handleStartNewPlan = () => navigate("/plan/create");
 
     const pageTitle = (<PageTitle title="Orders List" />);

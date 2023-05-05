@@ -10,8 +10,6 @@ const MainContainer = styled.main`
 `;
 
 const App: FunctionComponent = () => {
-
-
     return (
         <>
             <Header />
