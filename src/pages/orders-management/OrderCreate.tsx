@@ -10,6 +10,11 @@ const Component = styled.div`
     margin: 1rem;
 `;
 
+export const PageTitle = styled.div`
+    text-align: center;
+    font-variant: small-caps;
+`;
+
 const OrderCreate: FunctionComponent = () => {
     const navigate = useNavigate();
     const handleCancel = () => {
@@ -21,9 +26,11 @@ const OrderCreate: FunctionComponent = () => {
         handleCancel();
     };
 
+    const pageTitle = (<PageTitle><h1>Create Order</h1></PageTitle>);
+
     return (
         <Component>
-            <Card>
+            <Card header={pageTitle}>
                 <OrderForm
                     onCancel={handleCancel}
                     onSubmit={handleCreateOrder} />

@@ -33,6 +33,11 @@ export const Component = styled.div`
     }
 `;
 
+export const PageTitle = styled.div`
+    text-align: center;
+    font-variant: small-caps;
+`;
+
 export const ButtonsGroup = styled.div`
     display: flex;
     margin: 1rem 0;
@@ -64,13 +69,15 @@ const OrderDetail: FunctionComponent = () => {
     };
 
     const handleDeleteOrder = async () => {
+        if (!order.id) return;
         await ordersService.deleteOrder(order.id);
         handleBackToList();
     };
 
     const handleUpdateOrder = async (order: Order) => {
+        if (!order.id) return;
         await ordersService.updateOrder(order);
-        const updatedOrder = await ordersService.getOrder(currentOrder.id);
+        const updatedOrder = await ordersService.getOrder(currentOrder.id!);
         if (!updatedOrder) {
             navigate("/error");
             return;
@@ -78,6 +85,8 @@ const OrderDetail: FunctionComponent = () => {
         setCurrentOrder(updatedOrder);
         handleEditOrder(false);
     };
+
+    const viewModeTitle = (<PageTitle><h1>{isEditMode ? "Update Order" : "Order Detail"}</h1></PageTitle>);
 
     const viewModeActions = (
         <ButtonsGroup>
@@ -89,8 +98,7 @@ const OrderDetail: FunctionComponent = () => {
 
     return (
         <Component>
-            <Card footer={!isEditMode && viewModeActions}>
-                {/* <pre>{JSON.stringify(currentOrder, undefined, 2)}</pre> */}
+            <Card header={viewModeTitle} footer={!isEditMode && viewModeActions}>
                 <OrderForm
                     readonly={!isEditMode}
                     order={currentOrder}

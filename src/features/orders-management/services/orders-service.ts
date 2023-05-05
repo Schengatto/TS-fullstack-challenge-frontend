@@ -8,7 +8,7 @@ const orders: Order[] = [
         status: OrderStatus.OrderPlaced,
         packages: [
             {
-                id: "P0001",
+                code: "P0001",
                 recipient: {
                     address: "Via scura",
                     city: "Milano",
@@ -23,7 +23,7 @@ const orders: Order[] = [
                 },
             },
             {
-                id: "P0002",
+                code: "P0002",
                 recipient: {
                     address: "Via verde",
                     city: "Venezia",

@@ -20,7 +20,7 @@ export enum OrderStatus {
 }
 
 export interface Order {
-    id: string;
+    id?: string;
     packages: Package[];
     status: OrderStatus;
     invoiceId: string;
@@ -28,7 +28,7 @@ export interface Order {
 }
 
 export interface Package {
-    id: string;
+    code: string;
     supplier: AddressInfo;
     recipient: AddressInfo;
     notes?: string;

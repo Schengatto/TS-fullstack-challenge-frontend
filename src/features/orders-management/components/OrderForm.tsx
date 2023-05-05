@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { ChangeEvent, FunctionComponent, useState } from "react";
 import styled from "styled-components";
 import InputText from "../../../components/form/InputText";
+import TextArea from "../../../components/form/TextArea";
 import Button from "../../../components/ui/Button";
+import Table from "../../../components/ui/Table";
 import { generateRandomString } from "../../../utils/string-utils";
 import { AddressInfo, Order, OrderStatus, Package } from "../models/order";
-import TextArea from "../../../components/form/TextArea";
-import Table from "../../../components/ui/Table";
 
 const FormGroup = styled.div`
     .form-row {
@@ -37,18 +37,18 @@ interface OrderFormProps {
 }
 
 const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCancel, onSubmit }) => {
-    const [invoiceId, setInvoiceId] = useState<string>(order?.invoiceId || "");
-    const [notes, setNotes] = useState<string>(order?.notes || "");
-    const [packages, setPackages] = useState<Package[]>(order?.packages || []);
-    const [status, setStatus] = useState<OrderStatus>(order?.status || OrderStatus.OrderPlaced);
-    const [isFormValid, setIsFormvalid] = useState<boolean>(false);
 
-    useEffect(() => {
-        setIsFormvalid(!!invoiceId && !!packages.length);
-    }, [invoiceId, packages]);
+    const initialFormState: Order = order
+        ? { ...order }
+        : { id: "", status: OrderStatus.OrderPlaced, invoiceId: "", packages: [], notes: "" };
+
+    const [formFields, setFormFields] = useState<Order>(initialFormState);
+
+    const isFormValid = formFields.invoiceId && formFields.packages.length > 0;
 
     const handleSubmit = (event: any): void => {
         event.preventDefault();
+        const { invoiceId, notes, packages, status } = formFields;
 
         const currentOrder: Order = order
             ? { id: order.id, invoiceId, notes, packages, status }
@@ -58,14 +58,14 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
     };
 
     const packagesTableHeaders = [
-        { key: "id", label: "ID" },
+        { key: "code", label: "Code" },
         { key: "supplier", label: "Supplier City", parseFunction: (supplier: AddressInfo) => supplier.city },
         { key: "recipient", label: "Recipient City", parseFunction: (recipient: AddressInfo) => recipient.city },
         { key: "notes", label: "Notes" }
     ];
 
     const generateFakePackage = () => ({
-        id: generateRandomString(8),
+        code: generateRandomString(8),
         recipient: {
             address: "Via scura",
             city: "Milano",
@@ -80,14 +80,15 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
         }
     });
 
-    const handleAddNewPackage = (): void => setPackages((prev: Package[]) => [...prev, generateFakePackage()]);
-
-    const resetForm = (): void => {
-        setInvoiceId(order?.invoiceId || "");
-        setNotes(order?.notes || "");
-        setPackages(order?.packages || []);
-        setStatus(order?.status || OrderStatus.OrderPlaced);
+    const handleFormFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const name = e.currentTarget.name;
+        const value = e.currentTarget.value;
+        setFormFields(state => ({ ...state, [name]: value }));
     };
+
+    const handleAddNewPackage = (): void => setFormFields((state) => ({ ...state, packages: [...state.packages, generateFakePackage()] }));
+
+    const resetForm = (): void => setFormFields(initialFormState);
 
     const handleCancel = (): void => {
         resetForm();
@@ -101,32 +102,37 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                     <InputText
                         label="ID"
                         type="text"
-                        value={order?.id || ""}
+                        value={formFields.id}
                         disabled />
 
                     <InputText
                         label="Status"
                         type="text"
-                        value={status}
+                        value={formFields.status}
                         disabled />
 
                     <InputText
                         label="Invoice number"
                         required type="text"
-                        value={invoiceId}
+                        value={formFields.invoiceId}
                         disabled={readonly}
-                        onChange={(e) => setInvoiceId(e.target.value)} />
+                        onChange={handleFormFieldChange} />
                 </div>
                 <div className="form-row">
-                    <TextArea label="Notes" type="text" value={notes} disabled={readonly} onChange={(e) => setNotes(e.target.value)} />
+                    <TextArea
+                        label="Notes"
+                        type="text"
+                        value={formFields.notes}
+                        disabled={readonly}
+                        onChange={handleFormFieldChange} />
                 </div>
 
                 <Table
                     title='Packages'
                     readonly={readonly}
                     headers={packagesTableHeaders}
-                    items={packages}
-                    searchKey="id" />
+                    items={formFields.packages}
+                    searchKey="code" />
 
                 {!readonly &&
                     <div className="form-actions">
