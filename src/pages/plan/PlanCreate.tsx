@@ -40,7 +40,7 @@ const PlanCreate: FunctionComponent = () => {
         navigate("/order");
     };
 
-    const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`);
+    const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`, { state: { from: "/plan/create" } });
 
     const handleCreatePlan = async (order: Order) => {
         if (isFetchingData) return;

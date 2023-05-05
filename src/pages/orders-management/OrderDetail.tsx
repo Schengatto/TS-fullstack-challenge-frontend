@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { LoaderFunctionArgs, useLoaderData, useNavigate } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
@@ -46,13 +46,15 @@ export const ButtonsGroup = styled.div`
 
 const OrderDetail: FunctionComponent = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const order = useLoaderData() as Order;
 
     const [currentOrder, setCurrentOrder] = useState<Order>(JSON.parse(JSON.stringify(order)));
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
-    const handleBackToList = () => {
-        navigate("/order");
+    const handleBack = () => {
+        const from = (location.state && location.state["from"]) ?? "/order";
+        navigate(from);
     };
 
     const handleEditOrder = (value: boolean) => {
@@ -67,7 +69,7 @@ const OrderDetail: FunctionComponent = () => {
     const handleDeleteOrder = async () => {
         if (!order.id) return;
         await ordersService.deleteOrder(order.id);
-        handleBackToList();
+        handleBack();
     };
 
     const handleUpdateOrder = async (order: Order) => {
@@ -86,7 +88,7 @@ const OrderDetail: FunctionComponent = () => {
 
     const viewModeActions = (
         <ButtonsGroup>
-            <Button label="Back" onClick={handleBackToList}></Button>
+            <Button label="Back" onClick={handleBack}></Button>
             <Button label="Edit Order" onClick={handleEditOrder.bind(null, true)}></Button>
             <Button label="Delete Order" onClick={handleDeleteOrder}></Button>
         </ButtonsGroup>
