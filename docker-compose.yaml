@@ -4,7 +4,7 @@ services:
   react-challenge-app:
     container_name: enrico-challenge-app
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "8080:80"
