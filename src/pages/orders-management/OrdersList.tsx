@@ -59,7 +59,8 @@ const OrdersList: FunctionComponent = () => {
                 onClick={handleAddNewOrder} />
             <Button
                 label="Start New Plan"
-                onClick={handleStartNewPlan} />
+                onClick={handleStartNewPlan}
+                disabled={!ordersForPlan.length} />
         </ButtonsGroup>);
 
     return (

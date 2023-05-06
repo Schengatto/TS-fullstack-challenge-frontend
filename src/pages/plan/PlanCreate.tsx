@@ -62,6 +62,7 @@ const PlanCreate: FunctionComponent = () => {
                 />
 
                 <PlanForm
+                    disabled={!orders.length}
                     onCancel={handleCancel}
                     onSubmit={handleCreatePlan} />
             </Card>

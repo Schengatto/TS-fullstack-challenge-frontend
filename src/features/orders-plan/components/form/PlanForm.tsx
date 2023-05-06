@@ -27,15 +27,16 @@ const FormGroup = styled.div`
 `;
 
 interface PlanFormProps {
+    disabled?: boolean;
     onCancel: () => void;
     onSubmit: (depotId: string) => void;
 }
 
-const PlanForm: FunctionComponent<PlanFormProps> = ({ onCancel, onSubmit }) => {
+const PlanForm: FunctionComponent<PlanFormProps> = ({ disabled, onCancel, onSubmit }) => {
 
     const [depotId, setFormFields] = useState<string | null>(null);
 
-    const isFormValid = !!depotId;
+    const isFormValid = !!depotId && !disabled;
 
     const handleDepotChange = (depotId: string) => {
         setFormFields(() => depotId);
