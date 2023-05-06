@@ -57,7 +57,7 @@ const PlanCreate: FunctionComponent = () => {
                     title='Orders added in the new plan'
                     items={orders}
                     headers={headers}
-                    searchKey="id"
+                    searchKeys={["id"]}
                     isLoading={isFetchingData}
                     onRowClick={handleOrderClick}
                 />

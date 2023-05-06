@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Table from "./Table";
 
@@ -33,6 +32,6 @@ Default.args = {
     { name: "Watermelon", color: "Green/Red/White", price: 10.99 },
     { name: "Lemon", color: "Yellow/Green ", price: 11.99 }
   ],
-  searchKey: "name"
+  searchKeys: ["name"]
 };
 

@@ -33,7 +33,7 @@ const OrdersList: FunctionComponent = () => {
         { key: "id", label: "ID" },
         { key: "packages", label: "# packages", parseFunction: (packages: Package[]) => packages.length },
         { key: "packages", label: "Cities", parseFunction: (packages: Package[]) => getUniqueValues(packages.flatMap(p => p.destination).map(d => d.city)).join(", ") },
-        { key: "status", label: "Status"},
+        { key: "status", label: "Status" },
     ];
 
     const ordersForPlan = orders.filter(order => order.status === OrderStatus.OrderPlaced);
@@ -69,7 +69,7 @@ const OrdersList: FunctionComponent = () => {
                     title='Orders ready for plan'
                     items={ordersForPlan}
                     headers={headers}
-                    searchKey="id"
+                    searchKeys={["id", "status"]}
                     isLoading={isFetchingData}
                     onRowClick={handleOrderClick} />
             </Card>
@@ -79,7 +79,7 @@ const OrdersList: FunctionComponent = () => {
                     title='Orders processed'
                     items={ordersPlanned}
                     headers={headers}
-                    searchKey="id"
+                    searchKeys={["id", "status"]}
                     isLoading={isFetchingData}
                     onRowClick={handleOrderClick} />
             </Card>

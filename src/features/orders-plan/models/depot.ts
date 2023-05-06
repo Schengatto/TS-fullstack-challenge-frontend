@@ -7,6 +7,7 @@ export interface Depot {
 }
 
 export interface PlanInfo {
+    id?: string;
     ordersId: string[];
     depotId: string;
 }

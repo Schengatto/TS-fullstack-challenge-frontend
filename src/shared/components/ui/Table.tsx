@@ -92,7 +92,7 @@ export interface TableProps {
     actions?: ReactNode;
     headers: TableHeaderInfo[];
     items: any[];
-    searchKey: string;
+    searchKeys: string[];
     footer?: ReactNode;
     readonly?: boolean;
     isLoading?: boolean;
@@ -100,20 +100,22 @@ export interface TableProps {
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, isLoading, bgColor, onRowClick }) => {
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKeys, footer, readonly, isLoading, bgColor, onRowClick }) => {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [pageItems, setPageItems] = useState<any[]>([]);
     const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
     const [searchTerm, setSearchTerm] = useState<string>("");
 
+    const applyFilter = (item: any, searchKey: string) => getFieldValue(item, searchKey).toLowerCase().includes(searchTerm.toLowerCase());
+
     useEffect(() => {
-        const matchTerms = items.filter(item => item[searchKey].toLowerCase().includes(searchTerm.toLowerCase()));
+        const matchTerms = items.filter((item: any) => searchKeys.some(key => applyFilter(item, key)));
         setFilteredItems(matchTerms);
         const from = (pageInfo.pageNumber - 1) * pageInfo.pageSize;
         const to = pageInfo.pageSize + ((pageInfo.pageNumber - 1) * pageInfo.pageSize);
         const pageItems = matchTerms.slice(from, to);
         setPageItems(pageItems);
-    }, [pageInfo, items, searchKey, searchTerm]);
+    }, [pageInfo, items, searchKeys, searchTerm]);
 
     const handleSearch = (term: string) => {
         setSearchTerm(term);
@@ -126,7 +128,13 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
     const handleRowClick = (id: string) => !readonly && onRowClick && onRowClick(id);
 
     const parseRow = (item: any, index: number) => (headers
-        .map((header: TableHeaderInfo) => ({ key: `${index}-${header.key}-${header.label}`, item, value: header.parseFunction ? header.parseFunction(item[header.key]) : getFieldValue(item, header.key) && String(getFieldValue(item, header.key)) }))
+        .map((header: TableHeaderInfo) => ({
+            key: `${index}-${header.key}-${header.label}`,
+            item,
+            value: header.parseFunction
+                ? header.parseFunction(item[header.key])
+                : getFieldValue(item, header.key) && String(getFieldValue(item, header.key))
+        }))
         .map(row => <td className="item-row" key={row.key}>{row.value}</td>));
 
     const emptyTable = isLoading

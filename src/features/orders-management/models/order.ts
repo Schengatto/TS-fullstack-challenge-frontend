@@ -25,6 +25,7 @@ export interface Order {
     packages: Package[];
     status: OrderStatus;
     invoiceId: string;
+    createAt?: string;
     notes?: string;
     planId?: string;
 }

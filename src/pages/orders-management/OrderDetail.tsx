@@ -74,7 +74,7 @@ const OrderDetail: FunctionComponent = () => {
 
     const openPlanDetails = () => {
         navigate(`/plan/${order.planId}`);
-    }
+    };
 
     const handleUpdateOrder = async (order: Order) => {
         if (!order.id) return;
@@ -88,7 +88,7 @@ const OrderDetail: FunctionComponent = () => {
         handleEditOrder(false);
     };
 
-    const viewModeTitle = (<PageTitle title={isEditMode ? "Update Order" : "Order Detail"} />);
+    const viewModeTitle = (<PageTitle title={isEditMode ? `Update Order ${order.id}` : `Order Detail ${order.id}`} />);
 
     const viewModeActions = (
         <ButtonsGroup>

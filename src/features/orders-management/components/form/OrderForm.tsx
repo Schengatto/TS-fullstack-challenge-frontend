@@ -9,6 +9,7 @@ import { Order, OrderStatus } from "features/orders-management/models/order";
 import { Package } from "features/orders-management/models/package";
 import PackageForm from "./PackageForm";
 import { AddressInfo } from "shared/models/address";
+import { parseDateTimeToString } from "shared/utils/date-utils";
 
 const FormGroup = styled.div`
     .form-row {
@@ -43,7 +44,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
 
     const initialFormState: Order = order
         ? { ...order }
-        : { id: "", status: OrderStatus.OrderPlaced, invoiceId: "", packages: [], notes: "" };
+        : { id: "", createAt: parseDateTimeToString(new Date()), status: OrderStatus.OrderPlaced, invoiceId: "", packages: [], notes: "" };
 
     const [formFields, setFormFields] = useState<Order>(initialFormState);
     const [selectedPackage, setSelectedPackage] = useState<Package | null | undefined>(undefined);
@@ -101,11 +102,11 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <InputText
-                        label="ID"
-                        name="id"
+                        label="Date"
+                        name="createAt"
                         type="text"
-                        value={formFields.id}
-                        data-test="OrderForm__Input__id"
+                        value={formFields.createAt}
+                        data-test="OrderForm__Input__createAt"
                         disabled />
 
                     <InputText
@@ -142,7 +143,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                         readonly={readonly}
                         headers={packagesTableHeaders}
                         items={formFields.packages}
-                        searchKey="code"
+                        searchKeys={["code"]}
                         onRowClick={handleEditPackage} />
                 )}
 
