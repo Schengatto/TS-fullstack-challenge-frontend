@@ -1,10 +1,23 @@
 version: "3.8"
 
 services:
-  react-challenge-app:
-    container_name: enrico-challenge-app
+  react-challenge-app-backend:
+    container_name: enrico-challenge-app-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  react-challenge-app-frontend:
+    container_name: enrico-challenge-app-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    environment:
+      HOST: 0.0.0.0
+      VUE_APP_API_ENDPOINT: "react-challenge-app-backend:3000"
+    depends_on:
+      - react-challenge-app-backend

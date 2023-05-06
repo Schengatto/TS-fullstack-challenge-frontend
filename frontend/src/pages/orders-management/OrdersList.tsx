@@ -40,10 +40,10 @@ const OrdersList: FunctionComponent = () => {
     const ordersPlanned = orders.filter(order => order.status !== OrderStatus.OrderPlaced);
 
     useEffect(() => {
-        setIsFetchingData(true);
+        setIsFetchingData(() => true);
         orderServices.getOrders()
             .then((orders) => setOrders(orders))
-            .finally(() => setIsFetchingData(false));
+            .finally(() => setIsFetchingData(() => false));
     }, []);
 
     const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`);

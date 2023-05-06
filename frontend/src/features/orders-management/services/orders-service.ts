@@ -1,10 +1,17 @@
-import { MOCKED_DATA_ORDERS } from "../data/orders";
 import { Order, OrderStatus } from "../models/order";
+import { MOCKED_DATA_ORDERS } from "../data/orders";
+import { RequestBuilder } from "shared/utils/request-builder";
+import httpService from "shared/service/http-service";
 
 class OrdersService {
     async getOrders(): Promise<Order[]> {
-        await this.delay(500);
-        return Promise.resolve(MOCKED_DATA_ORDERS);
+        const request = new RequestBuilder().withURL("order").build();
+        // try {
+            return await httpService.get<Order[]>(request).then((res) => res.data);
+        // } catch (error: any) {
+        //     if (error.name === "CanceledError") return Promise.resolve([]);
+        //     throw new Error(error.message);
+        // }
     }
 
     async getOrder(id: string): Promise<Order | undefined> {
