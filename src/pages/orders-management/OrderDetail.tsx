@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "shared/components/ui/Button";
 import Card from "shared/components/ui/Card";
 import OrderForm from "features/orders-management/components/form/OrderForm";
-import { Order } from "features/orders-management/models/order";
+import { Order, OrderStatus } from "features/orders-management/models/order";
 import ordersService from "features/orders-management/services/orders-service";
 import { NotFoundError } from "shared/models/error";
 import PageTitle from "shared/components/PageTitle";
@@ -72,6 +72,10 @@ const OrderDetail: FunctionComponent = () => {
         handleBack();
     };
 
+    const openPlanDetails = () => {
+        navigate(`/plan/${order.planId}`);
+    }
+
     const handleUpdateOrder = async (order: Order) => {
         if (!order.id) return;
         await ordersService.updateOrder(order);
@@ -89,8 +93,17 @@ const OrderDetail: FunctionComponent = () => {
     const viewModeActions = (
         <ButtonsGroup>
             <Button label="Back" onClick={handleBack}></Button>
-            <Button label="Edit Order" onClick={handleEditOrder.bind(null, true)}></Button>
-            <Button label="Delete Order" onClick={handleDeleteOrder}></Button>
+
+            {order.status === OrderStatus.OrderPlaced && (
+                <>
+                    <Button label="Edit Order" onClick={handleEditOrder.bind(null, true)}></Button>
+                    <Button label="Delete Order" onClick={handleDeleteOrder}></Button>
+                </>
+            )}
+
+            {order.planId && <>
+                <Button label="Plan Details" onClick={openPlanDetails}></Button>
+            </>}
         </ButtonsGroup>
     );
 
@@ -103,6 +116,7 @@ const OrderDetail: FunctionComponent = () => {
                     onCancel={handleCancelPendingChanges}
                     onSubmit={handleUpdateOrder} />
             </Card>
+
         </Component>
     );
 };

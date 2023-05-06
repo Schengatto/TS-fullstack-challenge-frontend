@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 import styled from "styled-components";
 import Button from "shared/components/ui/Button";
 import Select from "shared/components/form/DropDown";
-import { Depot } from "features/orders-management/models/depot";
+import { Depot } from "features/orders-plan/models/depot";
 
 const FormGroup = styled.div`
     .form-row {
@@ -52,8 +52,10 @@ const PlanForm: FunctionComponent<PlanFormProps> = ({ onCancel, onSubmit }) => {
     };
 
     const depots: Depot[] = [
-        { id: "D0001", name: "Verona", address: { address: "Topo", city: "Verona", latitude: 2, longitude: 2, owner: "Enrico", postalCode: "30033" } },
-        { id: "D0002", name: "Verona 2", address: { address: "Gatto", city: "Verona", latitude: 2, longitude: 2, owner: "Milkman", postalCode: "30033" } }
+        { id: "D0004", name: "Roma", address: { address: "Via Romolo", city: "Roma", latitude: 41.88, longitude: 12.46, owner: "Nerone s.r.l.", postalCode: "00186" } },
+        { id: "D0003", name: "Torino", address: { address: "Via Cavour", city: "Torino", latitude: 45.07, longitude: 7.63, owner: "Belmonte s.r.l.", postalCode: "10121" } },
+        { id: "D0001", name: "Verona", address: { address: "Via Germania", city: "Verona", latitude: 45.41, longitude: 10.97, owner: "Milkman test S.p.A.", postalCode: "37136" } },
+        { id: "D0002", name: "Verona 2", address: { address: "Via dei test", city: "Verona", latitude: 45.43, longitude: 11.03, owner: "Milkman test S.p.A.", postalCode: "37132" } },
     ];
     const items: any[] = depots.map(d => ({ label: d.name, value: d }));
     items.unshift({ label: "", value: null });
@@ -68,7 +70,7 @@ const PlanForm: FunctionComponent<PlanFormProps> = ({ onCancel, onSubmit }) => {
                 </div>
                 <div className="form-actions">
                     <Button label="Cancel" onClick={handleCancel} />
-                    <Button label="Start the new plan" disabled={!isFormValid}></Button>
+                    <Button label="Start the new plan" disabled={!isFormValid} type="submit"></Button>
                 </div>
             </form>
         </FormGroup>

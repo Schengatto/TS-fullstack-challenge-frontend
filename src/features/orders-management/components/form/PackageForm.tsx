@@ -3,7 +3,7 @@ import styled from "styled-components";
 import InputText from "shared/components/form/InputText";
 import TextArea from "shared/components/form/TextArea";
 import Button from "shared/components/ui/Button";
-import { AddressInfo } from "features/orders-management/models/address";
+import { AddressInfo } from "shared/models/address";
 import { Package } from "features/orders-management/models/package";
 
 const FormGroup = styled.div`

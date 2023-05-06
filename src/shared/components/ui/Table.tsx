@@ -5,9 +5,9 @@ import PageNavigator from "./PageNavigator";
 import SearchBar from "./SearchBar";
 import { getFieldValue } from "../../utils/object-utils";
 
-const Component = styled.div`
-    background-color: var(--primary-bg-color);
-    border: 5px solid var(--primary-bg-color);
+const Component = styled.div<{ bgColor?: string }>`
+    background-color: ${(props) => props.bgColor || "var(--primary-bg-color)"};
+    border: 5px solid ${(props) => props.bgColor || "var(--primary-bg-color)"};
 
     &.disabled {
         background-color: var(--primary-disabled-bg-color);
@@ -96,10 +96,11 @@ export interface TableProps {
     footer?: ReactNode;
     readonly?: boolean;
     isLoading?: boolean;
+    bgColor?: string;
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, isLoading, onRowClick }) => {
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKey, footer, readonly, isLoading, bgColor, onRowClick }) => {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [pageItems, setPageItems] = useState<any[]>([]);
     const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
@@ -133,7 +134,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         : (<div className="table__no-data">No results</div>);
 
     return (
-        <Component className={readonly ? "disabled" : ""}>
+        <Component className={readonly ? "disabled" : ""} bgColor={bgColor}>
             <div className="table__pre-append">
                 <div className="table__title">
                     <strong>{title}</strong>

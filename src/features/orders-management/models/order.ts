@@ -26,4 +26,5 @@ export interface Order {
     status: OrderStatus;
     invoiceId: string;
     notes?: string;
+    planId?: string;
 }

@@ -16,11 +16,12 @@ export interface CardProps {
     children: ReactNode;
     header?: ReactNode;
     footer?: ReactNode;
+    className?: string;
 }
 
-const Card: FunctionComponent<CardProps> = ({ children, header, footer }) => {
+const Card: FunctionComponent<CardProps> = ({ children, header, footer, className }) => {
     return (
-        <Component>
+        <Component className={className}>
             {header && <div className="card__header">{header}</div>}
             <div className="card__body">{children}</div>
             {footer && <div className="card__footer">{footer}</div>}

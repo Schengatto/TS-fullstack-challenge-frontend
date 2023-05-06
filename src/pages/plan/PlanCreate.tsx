@@ -7,8 +7,10 @@ import Table from "shared/components/ui/Table";
 import { getUniqueValues } from "shared/utils/array-utils";
 import { Order, OrderStatus } from "features/orders-management/models/order";
 import ordersService from "features/orders-management/services/orders-service";
+import planService from "features/orders-plan/services/plan-service";
 import { Package } from "features/orders-management/models/package";
-import PlanForm from "features/orders-management/components/form/PlanForm";
+import PlanForm from "features/orders-plan/components/form/PlanForm";
+import { Depot } from "features/orders-plan/models/depot";
 
 const Component = styled.div`
     margin: 1rem;
@@ -39,11 +41,10 @@ const PlanCreate: FunctionComponent = () => {
 
     const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`, { state: { from: "/plan/create" } });
 
-    const handleCreatePlan = async (order: Order) => {
+    const handleCreatePlan = async (depot: Depot) => {
         if (isFetchingData) return;
-
         setIsFetchingData(true);
-        await ordersService.addOrder(order).finally(() => setIsFetchingData(false));
+        planService.createPlan({ ordersId: orders.map(order => order.id!), depotId: depot.id }).finally(() => setIsFetchingData(false));
         handleCancel();
     };
 
@@ -63,7 +64,7 @@ const PlanCreate: FunctionComponent = () => {
 
                 <PlanForm
                     onCancel={handleCancel}
-                    onSubmit={() => null} />
+                    onSubmit={handleCreatePlan} />
             </Card>
         </Component>
     );

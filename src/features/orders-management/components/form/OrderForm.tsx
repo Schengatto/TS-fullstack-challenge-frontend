@@ -8,7 +8,7 @@ import { generateRandomString } from "shared/utils/string-utils";
 import { Order, OrderStatus } from "features/orders-management/models/order";
 import { Package } from "features/orders-management/models/package";
 import PackageForm from "./PackageForm";
-import { AddressInfo } from "features/orders-management/models/address";
+import { AddressInfo } from "shared/models/address";
 
 const FormGroup = styled.div`
     .form-row {

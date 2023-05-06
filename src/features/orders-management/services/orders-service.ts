@@ -36,6 +36,28 @@ const orders: Order[] = [
         invoiceId: "A001",
         notes: "Consegnare entro fine mese",
     },
+    {
+        id: "0002",
+        status: OrderStatus.Shipped,
+        packages: [
+            {
+                code: "P0003",
+                destination: {
+                    owner: "Enrico",
+                    address: "Via viola",
+                    city: "Verona",
+                    latitude: 60,
+                    longitude: 30,
+                    postalCode: "20223",
+                },
+                supplierId: "S0001",
+                notes: "Hello world",
+            },
+        ],
+        invoiceId: "A002",
+        notes: "Consegnare Subito",
+        planId: "P0001"
+    },
 ];
 
 class OrdersService {
@@ -85,12 +107,9 @@ class OrdersService {
 
     async deleteOrder(id: string): Promise<boolean> {
         await this.delay(500);
-        if (this.apiKey !== CHALLENGE_API_KEY) {
-            return Promise.reject("API Key is not valid!");
-        }
-        const index = orders.findIndex((m) => m.id === id);
-        if (index >= 0) {
-            orders.splice(index, 1);
+        const order = orders.find((m) => m.id === id);
+        if (order) {
+            order.status = OrderStatus.Cancelled;
             return Promise.resolve(true);
         }
         return Promise.resolve(false);

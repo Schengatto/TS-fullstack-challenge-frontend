@@ -19,15 +19,15 @@ button {
 }
 
 .mt-1 {
-    margin-top: 1rem;
+    margin-top: 1rem !important;
 }
 
 .mt-2 {
-    margin-top: 2rem;
+    margin-top: 2rem !important;
 }
 
 .mt-3 {
-    margin-top: 3rem;
+    margin-top: 3rem !important;
 }
 
 :root {
