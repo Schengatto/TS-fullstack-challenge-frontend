@@ -9,10 +9,7 @@ import orderServices from "../../features/orders-management/services/orders-serv
 import Table from "../../components/ui/Table";
 import { Package } from "../../features/orders-management/models/package";
 import { getUniqueValues } from "../../utils/array-utils";
-import Button from "../../components/ui/Button";
-import Select from "../../components/form/DropDown";
-import { Depot } from "../../features/orders-management/models/depot";
-import InputText from "../../components/form/InputText";
+import PlanForm from "../../features/orders-management/components/PlanForm";
 
 const Component = styled.div`
     margin: 1rem;
@@ -52,13 +49,6 @@ const PlanCreate: FunctionComponent = () => {
     };
 
     const pageTitle = (<PageTitle title="New Plan" />);
-    const depots: Depot[] = [
-        { id: "D0001", name: "Verona", address: { address: "Topo", city: "Verona", latitude: 2, longitude: 2, owner: "Enrico", postalCode: "30033" } },
-        { id: "D0002", name: "Verona 2", address: { address: "Gatto", city: "Verona", latitude: 2, longitude: 2, owner: "Milkman", postalCode: "30033" } }
-    ];
-
-    const items: any[] = depots.map(d => ({ label: d.name, value: d }));
-    items.unshift({ label: "", value: null });
 
     return (
         <Component>
@@ -72,12 +62,9 @@ const PlanCreate: FunctionComponent = () => {
                     onRowClick={handleOrderClick}
                 />
 
-                <form>
-                    <InputText label="prova" value=""/>
-                    <Select items={items} onChange={() => null} />
-                    <Button label="Cancel" onClick={handleCancel}></Button>
-                    <Button label="Start the new plan"></Button>
-                </form>
+                <PlanForm
+                    onCancel={handleCancel}
+                    onSubmit={() => null} />
             </Card>
         </Component>
     );

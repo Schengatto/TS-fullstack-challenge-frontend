@@ -5,10 +5,10 @@ import Table from "../../components/ui/Table";
 import { Order, OrderStatus } from "../../features/orders-management/models/order";
 import orderServices from "../../features/orders-management/services/orders-service";
 import Card from "../../components/ui/Card";
-import PageTitle from "../../components/PageTitle";
 import { useNavigate } from "react-router-dom";
 import { Package } from "../../features/orders-management/models/package";
 import { getUniqueValues } from "../../utils/array-utils";
+import PageTitle from "../../components/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;
