@@ -18,6 +18,18 @@ button {
     -o-user-select: none;
 }
 
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
 :root {
     --primary-text-color: #4f4f4f;
     --primary-bg-color: #b3e6e4;

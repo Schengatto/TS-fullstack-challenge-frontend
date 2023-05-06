@@ -1,14 +1,14 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import styled from "styled-components";
-import Button from "../../components/ui/Button";
-import Table from "../../components/ui/Table";
-import { Order, OrderStatus } from "../../features/orders-management/models/order";
-import orderServices from "../../features/orders-management/services/orders-service";
-import Card from "../../components/ui/Card";
 import { useNavigate } from "react-router-dom";
-import { Package } from "../../features/orders-management/models/package";
-import { getUniqueValues } from "../../utils/array-utils";
-import PageTitle from "../../components/PageTitle";
+import styled from "styled-components";
+import Button from "shared/components/ui/Button";
+import Table from "shared/components/ui/Table";
+import Card from "shared/components/ui/Card";
+import { getUniqueValues } from "shared/utils/array-utils";
+import orderServices from "@order-management/services/orders-service";
+import { Order, OrderStatus } from "@order-management/models/order";
+import { Package } from "@order-management/models/package";
+import PageTitle from "shared/components/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;
@@ -73,16 +73,18 @@ const OrdersList: FunctionComponent = () => {
                     onRowClick={handleOrderClick} />
             </Card>
 
-            <Card data-test="ListOrders__Table">
-                <Table
-                    title='Orders processed'
-                    items={ordersPlanned}
-                    headers={headers}
-                    searchKey="id"
-                    readonly
-                    isLoading={isFetchingData}
-                    onRowClick={handleOrderClick} />
-            </Card>
+            <div className="mt-3">
+                <Card data-test="ListOrders__Table" >
+                    <Table
+                        title='Orders processed'
+                        items={ordersPlanned}
+                        headers={headers}
+                        searchKey="id"
+                        readonly
+                        isLoading={isFetchingData}
+                        onRowClick={handleOrderClick} />
+                </Card>
+            </div>
         </Component>
     );
 };

@@ -1,5 +1,5 @@
-import { RouterType } from "../models/router";
 import { Navigate } from "react-router-dom";
+import { RouterType } from "shared/models/router";
 import NotFound from "./NotFound";
 import Error from "./Error";
 import Home from "./Home";

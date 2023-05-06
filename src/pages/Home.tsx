@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
+import Button from "shared/components/ui/Button";
+import Card from "shared/components/ui/Card";
 
 const Component = styled.div`
         position: absolute;

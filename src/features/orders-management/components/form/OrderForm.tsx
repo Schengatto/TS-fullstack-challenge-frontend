@@ -1,14 +1,14 @@
 import { ChangeEvent, FunctionComponent, useState } from "react";
 import styled from "styled-components";
-import InputText from "../../../components/form/InputText";
-import TextArea from "../../../components/form/TextArea";
-import Button from "../../../components/ui/Button";
-import { generateRandomString } from "../../../utils/string-utils";
-import { Order, OrderStatus } from "../models/order";
-import { Package } from "../models/package";
+import InputText from "shared/components/form/InputText";
+import TextArea from "shared/components/form/TextArea";
+import Button from "shared/components/ui/Button";
+import Table from "shared/components/ui/Table";
+import { generateRandomString } from "shared/utils/string-utils";
+import { Order, OrderStatus } from "@order-management/models/order";
+import { Package } from "@order-management/models/package";
 import PackageForm from "./PackageForm";
-import Table from "../../../components/ui/Table";
-import { AddressInfo } from "../models/address";
+import { AddressInfo } from "@order-management/models/address";
 
 const FormGroup = styled.div`
     .form-row {

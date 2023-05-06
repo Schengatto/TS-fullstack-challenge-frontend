@@ -1,8 +1,8 @@
 import { FunctionComponent, useState } from "react";
 import styled from "styled-components";
-import Button from "../../../components/ui/Button";
-import { Depot } from "../models/depot";
-import Select from "../../../components/form/DropDown";
+import Button from "shared/components/ui/Button";
+import Select from "shared/components/form/DropDown";
+import { Depot } from "@order-management/models/depot";
 
 const FormGroup = styled.div`
     .form-row {

@@ -1,15 +1,14 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Card from "../../components/ui/Card";
-import { Order, OrderStatus } from "../../features/orders-management/models/order";
-import ordersService from "../../features/orders-management/services/orders-service";
-import PageTitle from "../../components/PageTitle";
-import orderServices from "../../features/orders-management/services/orders-service";
-import Table from "../../components/ui/Table";
-import { Package } from "../../features/orders-management/models/package";
-import { getUniqueValues } from "../../utils/array-utils";
-import PlanForm from "../../features/orders-management/components/PlanForm";
+import Card from "shared/components/ui/Card";
+import PageTitle from "shared/components/PageTitle";
+import Table from "shared/components/ui/Table";
+import { getUniqueValues } from "shared/utils/array-utils";
+import { Order, OrderStatus } from "@order-management/models/order";
+import ordersService from "@order-management/services/orders-service";
+import { Package } from "@order-management/models/package";
+import PlanForm from "@order-management/components/form/PlanForm";
 
 const Component = styled.div`
     margin: 1rem;
@@ -27,9 +26,9 @@ const PlanCreate: FunctionComponent = () => {
 
     useEffect(() => {
         setIsFetchingData(true);
-        orderServices.getOrders()
-            .then((orders) => orders.filter(order => order.status === OrderStatus.OrderPlaced))
-            .then((orders) => setOrders(orders))
+        ordersService.getOrders()
+            .then((orders: Order[]) => orders.filter(order => order.status === OrderStatus.OrderPlaced))
+            .then((orders: Order[]) => setOrders(orders))
             .finally(() => setIsFetchingData(false));
     }, []);
 

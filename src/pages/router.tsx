@@ -1,5 +1,5 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { RouterType } from "../models/router";
+import { RouterType } from "shared/models/router";
 import Error from "./Error";
 import pages from "./pages";
 

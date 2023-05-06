@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
 import { Link, useRouteError, useNavigate } from "react-router-dom";
-import { NotFoundError } from "../models/error";
+import { NotFoundError } from "shared/models/error";
 import styled from "styled-components";
 
 const Component = styled.div`

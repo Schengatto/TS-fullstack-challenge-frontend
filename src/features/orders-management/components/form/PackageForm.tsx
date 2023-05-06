@@ -1,10 +1,10 @@
 import { ChangeEvent, FunctionComponent, useState } from "react";
 import styled from "styled-components";
-import InputText from "../../../components/form/InputText";
-import TextArea from "../../../components/form/TextArea";
-import Button from "../../../components/ui/Button";
-import { AddressInfo } from "../models/address";
-import { Package } from "../models/package";
+import InputText from "shared/components/form/InputText";
+import TextArea from "shared/components/form/TextArea";
+import Button from "shared/components/ui/Button";
+import { AddressInfo } from "@order-management/models/address";
+import { Package } from "@order-management/models/package";
 
 const FormGroup = styled.div`
     .form-row {
