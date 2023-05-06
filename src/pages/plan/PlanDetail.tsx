@@ -1,11 +1,13 @@
 import { FunctionComponent } from "react";
-import { LoaderFunctionArgs, useLoaderData, useNavigate } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Card from "shared/components/ui/Card";
 import PageTitle from "shared/components/PageTitle";
 import { PlanInfo } from "features/orders-plan/models/depot";
 import plansService from "features/orders-plan/services/plan-service";
 import { NotFoundError } from "shared/models/error";
+import TrackingSteps from "features/orders-plan/components/TrackingSteps";
+import Button from "shared/components/ui/Button";
 
 export async function retrievePlan({ params }: LoaderFunctionArgs): Promise<PlanInfo> {
     if (!params.id) {
@@ -20,24 +22,35 @@ export async function retrievePlan({ params }: LoaderFunctionArgs): Promise<Plan
 
 const Component = styled.div`
     margin: 1rem;
+
+    .plan-path {
+        margin-bottom: 2rem;
+    }
 `;
 
 const PlanDetail: FunctionComponent = () => {
-
     const plan = useLoaderData() as PlanInfo;
-
+    const location = useLocation();
     const navigate = useNavigate();
+
     const handleBack = () => {
-        navigate("/plan");
+        const from = (location.state && location.state["from"]) ?? "/";
+        navigate(from);
     };
 
     const pageTitle = (<PageTitle title={`Plan ${plan.id}`} />);
 
+    const actions = (
+        <Button label="Back" onClick={handleBack} data-test="PlanDetails__Button__back" />
+    );
+
     return (
         <Component>
-            <Card header={pageTitle}>
-
-                {plan.depotId} - {plan.ordersId}
+            <Card header={pageTitle} footer={actions}>
+                <div className="plan-path">
+                    <h3>Plan Path</h3>
+                    <TrackingSteps steps={plan.steps} />
+                </div>
             </Card>
         </Component>
     );

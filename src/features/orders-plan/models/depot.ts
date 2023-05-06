@@ -3,11 +3,17 @@ import { AddressInfo } from "../../../shared/models/address";
 export interface Depot {
     id: string;
     name: string;
-    address: AddressInfo;
+    addressInfo: AddressInfo;
 }
 
 export interface PlanInfo {
     id?: string;
-    ordersId: string[];
-    depotId: string;
+    steps: PlanStep[];
+}
+
+export interface PlanStep {
+    stepNumber: number;
+    location: AddressInfo;
+    orderId?: string;
+    packageCode?: string;
 }

@@ -44,7 +44,7 @@ const PlanCreate: FunctionComponent = () => {
     const handleCreatePlan = async (depot: Depot) => {
         if (isFetchingData) return;
         setIsFetchingData(true);
-        planService.createPlan({ ordersId: orders.map(order => order.id!), depotId: depot.id }).finally(() => setIsFetchingData(false));
+        planService.createPlan(depot.id, orders.map(order => order.id!)).finally(() => setIsFetchingData(false));
         handleCancel();
     };
 

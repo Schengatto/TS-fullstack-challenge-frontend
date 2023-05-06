@@ -73,7 +73,7 @@ const OrderDetail: FunctionComponent = () => {
     };
 
     const openPlanDetails = () => {
-        navigate(`/plan/${order.planId}`);
+        navigate(`/plan/${order.planId}`, { state: { from: `/order/${order.id}` } });
     };
 
     const handleUpdateOrder = async (order: Order) => {
