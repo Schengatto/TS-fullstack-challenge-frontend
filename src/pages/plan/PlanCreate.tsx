@@ -5,10 +5,10 @@ import Card from "shared/components/ui/Card";
 import PageTitle from "shared/components/PageTitle";
 import Table from "shared/components/ui/Table";
 import { getUniqueValues } from "shared/utils/array-utils";
-import { Order, OrderStatus } from "@order-management/models/order";
-import ordersService from "@order-management/services/orders-service";
-import { Package } from "@order-management/models/package";
-import PlanForm from "@order-management/components/form/PlanForm";
+import { Order, OrderStatus } from "features/orders-management/models/order";
+import ordersService from "features/orders-management/services/orders-service";
+import { Package } from "features/orders-management/models/package";
+import PlanForm from "features/orders-management/components/form/PlanForm";
 
 const Component = styled.div`
     margin: 1rem;

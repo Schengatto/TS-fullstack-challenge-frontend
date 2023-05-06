@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 import styled from "styled-components";
 import Button from "shared/components/ui/Button";
 import Select from "shared/components/form/DropDown";
-import { Depot } from "@order-management/models/depot";
+import { Depot } from "features/orders-management/models/depot";
 
 const FormGroup = styled.div`
     .form-row {

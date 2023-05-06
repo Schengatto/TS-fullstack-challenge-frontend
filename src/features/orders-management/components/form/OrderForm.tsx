@@ -5,10 +5,10 @@ import TextArea from "shared/components/form/TextArea";
 import Button from "shared/components/ui/Button";
 import Table from "shared/components/ui/Table";
 import { generateRandomString } from "shared/utils/string-utils";
-import { Order, OrderStatus } from "@order-management/models/order";
-import { Package } from "@order-management/models/package";
+import { Order, OrderStatus } from "features/orders-management/models/order";
+import { Package } from "features/orders-management/models/package";
 import PackageForm from "./PackageForm";
-import { AddressInfo } from "@order-management/models/address";
+import { AddressInfo } from "features/orders-management/models/address";
 
 const FormGroup = styled.div`
     .form-row {

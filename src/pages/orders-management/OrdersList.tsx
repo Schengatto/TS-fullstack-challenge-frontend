@@ -5,9 +5,9 @@ import Button from "shared/components/ui/Button";
 import Table from "shared/components/ui/Table";
 import Card from "shared/components/ui/Card";
 import { getUniqueValues } from "shared/utils/array-utils";
-import orderServices from "@order-management/services/orders-service";
-import { Order, OrderStatus } from "@order-management/models/order";
-import { Package } from "@order-management/models/package";
+import orderServices from "features/orders-management/services/orders-service";
+import { Order, OrderStatus } from "features/orders-management/models/order";
+import { Package } from "features/orders-management/models/package";
 import PageTitle from "shared/components/PageTitle";
 
 const Component = styled.div`
