@@ -57,8 +57,8 @@ interface TrackingStepsProps {
 
 const TrackingSteps: FunctionComponent<TrackingStepsProps> = ({ steps }) => {
 
-    const renderStep = (step: PlanStep, hasNext: boolean) => (
-        <Step key={step.stepNumber}>
+    const renderStep = (step: PlanStep, index: number) => (
+        <Step key={index}>
             <div className="step-info">
                 <div className="step-circle" />
                 <div className="step-description">
@@ -66,13 +66,13 @@ const TrackingSteps: FunctionComponent<TrackingStepsProps> = ({ steps }) => {
                     {step.orderId && <div>Order ID: {step.orderId} - Package ID: {step.packageCode}</div>}
                 </div>
             </div>
-            {hasNext && <div className="step-line" />}
+            {index < steps.length - 1 && <div className="step-line" />}
         </Step>
     );
 
     return (
         <Component>
-            {steps.map((step, index) => renderStep(step, index < steps.length - 1))}
+            {steps.map((step, index) => renderStep(step, index))}
         </Component>
     );
 };

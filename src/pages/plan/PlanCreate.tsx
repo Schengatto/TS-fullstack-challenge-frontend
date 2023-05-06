@@ -10,7 +10,6 @@ import ordersService from "features/orders-management/services/orders-service";
 import planService from "features/orders-plan/services/plan-service";
 import { Package } from "features/orders-management/models/package";
 import PlanForm from "features/orders-plan/components/form/PlanForm";
-import { Depot } from "features/orders-plan/models/depot";
 
 const Component = styled.div`
     margin: 1rem;
@@ -41,11 +40,11 @@ const PlanCreate: FunctionComponent = () => {
 
     const handleOrderClick = (order: Order) => navigate(`/order/${order.id}`, { state: { from: "/plan/create" } });
 
-    const handleCreatePlan = async (depot: Depot) => {
+    const handleCreatePlan = async (depotId: string) => {
         if (isFetchingData) return;
         setIsFetchingData(true);
-        planService.createPlan(depot.id, orders.map(order => order.id!)).finally(() => setIsFetchingData(false));
-        handleCancel();
+        await planService.createPlan(depotId, orders.map(order => order.id!)).finally(() => setIsFetchingData(false));
+        navigate("/order");
     };
 
     const pageTitle = (<PageTitle title="New Plan" />);

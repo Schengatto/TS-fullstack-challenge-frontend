@@ -12,7 +12,6 @@ export interface PlanInfo {
 }
 
 export interface PlanStep {
-    stepNumber: number;
     location: AddressInfo;
     orderId?: string;
     packageCode?: string;
