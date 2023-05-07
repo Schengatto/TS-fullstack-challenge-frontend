@@ -12,10 +12,12 @@
 
 function sortByProperty(array: Array<any>, isASC: boolean, propertyName: string) {
     return [...array].sort((a: any, b: any) => {
-        if (getComparableValue(a[propertyName]) > getComparableValue(b[propertyName])) {
+        const aValue = getFieldValue(a, propertyName);
+        const bValue = getFieldValue(b, propertyName);
+        if (getComparableValue(aValue) > getComparableValue(bValue)) {
             return isASC ? 1 : -1;
         }
-        if (getComparableValue(a[propertyName]) < getComparableValue(b[propertyName])) {
+        if (getComparableValue(aValue) < getComparableValue(bValue)) {
             return isASC ? -1 : 1;
         }
         return 0;
@@ -89,3 +91,10 @@ export function removeDuplicateObjects(a: any[]): any[] {
 
     return uniqueObjects;
 }
+
+const getFieldValue = (source: Record<string, any>, fieldPath: string): any => {
+    const parts = fieldPath.split(".");
+    const target = parts.shift();
+    if (!target) return undefined;
+    return parts.length > 0 ? getFieldValue(source[target], parts.join(".")) : source[target];
+};

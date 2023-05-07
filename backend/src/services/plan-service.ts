@@ -3,7 +3,7 @@ import { MOCKED_DATA_PLANS } from "../data/plans";
 import { Order, OrderStatus } from "../models/order";
 import { Package } from "../models/package";
 import { CreatePlanParams, PlanInfo, PlanStep } from "../models/plan";
-import { orderAscByProperty } from "../utils/array";
+import { orderAscByProperty } from "../utils/array-utils";
 import ordersServices from "./order-service";
 
 class PlanService {
