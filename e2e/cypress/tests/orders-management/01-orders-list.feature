@@ -1,4 +1,4 @@
-Feature: Orders management - Orders list
+Feature: Orders management
 
   Background:
     Given a user that accesses the application
@@ -7,15 +7,14 @@ Feature: Orders management - Orders list
     When the user navigates to the orders list page
     Then the page contains a table with the orders ready to be inserted into a new plan
     And the page contains a table with the orders already processed
-    
+
   # Scenario: The user creates a new order
-  #   When the user opens the create new order page
+  #   When the user navigates to the create new order page
   #   And the user fills out the “Create a new order” form with the required information
   #   And the user confirm the new order
   #   Then a new order is created
   #   And the user is redirected to the order page
-  #   And the user sees the new order in the list
-  #   And the new order has the status “Order Placed”
+  #   And the user sees the new order in ready orders list
 
   # Scenario: The user accesses the order detail page
   #   When the user navigates to the orders list page

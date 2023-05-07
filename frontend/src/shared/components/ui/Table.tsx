@@ -141,8 +141,8 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         .map(row => <td className="item-row" key={row.key}>{row.value}</td>));
 
     const emptyTable = isLoading
-        ? (<div className="table__no-data">Loading...</div>)
-        : (<div className="table__no-data">{emptyTableMessage ? emptyTableMessage : "No results"}</div>);
+        ? (<div className="table__no-data" data-test="Table__Loading__message">Loading...</div>)
+        : (<div className="table__no-data" data-test="Table__Empty__message">{emptyTableMessage ? emptyTableMessage : "No results"}</div>);
 
     return (
         <Component className={readonly ? "disabled" : ""} bgColor={bgColor} {...rest}>

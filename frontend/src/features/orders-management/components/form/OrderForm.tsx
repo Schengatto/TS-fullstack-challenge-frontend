@@ -145,7 +145,8 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                         items={formFields.packages}
                         searchKeys={["code"]}
                         emptyTableMessage="The order must contain at least one package"
-                        onRowClick={handleEditPackage} />
+                        onRowClick={handleEditPackage}
+                        data-test="ORderForm__Table__packages" />
                 )}
 
                 {!isEditOrderLocked && (

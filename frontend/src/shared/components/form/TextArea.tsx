@@ -70,17 +70,17 @@ const TextArea: FunctionComponent<TextAreaProps> = React.forwardRef<HTMLTextArea
         <Component>
             <div
                 className="text-area__input-group"
-                data-test={`InputText__${toPascalCase(label)}`}>
+                data-test={`TextArea__${toPascalCase(label)}`}>
                 <textarea
                     ref={ref}
                     id={label}
                     value={value} {...rest}
                     rows={3}
-                    data-test="InputText_Input" />
+                    data-test="TextArea_Input" />
                 <label
                     className={styleClass}
                     htmlFor={label}
-                    data-test="InputText_Label">
+                    data-test="TextArea_Label">
                     {label}{required && <span className="text-area__required"> (required)</span>}
                 </label>
             </div>
