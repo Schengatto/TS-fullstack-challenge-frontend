@@ -1,5 +1,5 @@
 import { Then, When} from "@badeball/cypress-cucumber-preprocessor";
-import OrdersList from "../../support/page_objects/order-list";
+import OrdersList from "../support/page_objects/order-list";
 
 const ordersList = new OrdersList();
 

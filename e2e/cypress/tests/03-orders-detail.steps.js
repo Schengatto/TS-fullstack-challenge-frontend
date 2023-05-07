@@ -1,7 +1,7 @@
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import OrdersList from "../../support/page_objects/order-list";
-import OrderForm from "../../support/page_objects/order-form";
-import OrderDetail from "../../support/page_objects/order-detail";
+import OrdersList from "../support/page_objects/order-list";
+import OrderForm from "../support/page_objects/order-form";
+import OrderDetail from "../support/page_objects/order-detail";
 
 const ordersList = new OrdersList();
 const orderForm = new OrderForm();

@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "shared/components/ui/Button";
-import Select from "shared/components/form/DropDown";
+import Select from "shared/components/form/Select";
 import depotService from "features/orders-plan/services/depot-service";
 import { Depot } from "features/orders-plan/models/depot";
 
@@ -72,7 +72,7 @@ const PlanForm: FunctionComponent<PlanFormProps> = ({ disabled, onCancel, onSubm
             <h3>Select Depot</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
-                    <Select items={items} onChange={handleDepotChange} />
+                    <Select items={items} onChange={handleDepotChange} data-test="PlanForm__Select__depot" />
                 </div>
                 <div className="form-actions">
                     <Button label="Cancel" onClick={handleCancel} />

@@ -1,4 +1,6 @@
 Feature: Orders management - Order Detail and update
+  The user can see the details of an existing order using the Order Detail page.
+  In the Order Detail page the user can also edit the information of the order utill the order has the status ORDER_PLACED.
 
   Background:
     Given a user that accesses the application

@@ -27,7 +27,7 @@ const OrdersManagementRoutes: FastifyPluginAsync = async (server: FastifyInstanc
         },
         async (request: CreateOrderRequest, reply: FastifyReply) => {
             const order = await ordersService.createOrder(request.body as CreateOrderParams);
-            reply.statusCode = 203;
+            reply.statusCode = 201;
             return { order };
         }
     );

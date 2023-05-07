@@ -1,4 +1,4 @@
-import { FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const Component = styled.select`
@@ -35,7 +35,7 @@ const Select: FunctionComponent<SelectProps> = ({ items, onChange, ...rest }) =>
 
     return (
         <Component onChange={handleChange} {...rest}>
-            {items.map((option, index) => <option key={index} value={option.value}>{option.label}</option>)}
+            {items.map((option, index) => <option key={index} value={option.value} data-test={`Select__Option__${index}`}>{option.label}</option>)}
         </Component>
     );
 };

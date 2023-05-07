@@ -22,6 +22,10 @@ class OrderDetail {
     get saveButton() {
         return cy.get("[data-test=\"OrderForm__Button__save\"]");
     }
+
+    get planDetailsButton() {
+        return cy.get("[data-test=\"Button__PlanDetails\"]");
+    }
 }
 
 export default OrderDetail;

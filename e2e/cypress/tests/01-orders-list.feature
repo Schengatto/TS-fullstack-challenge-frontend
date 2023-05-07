@@ -11,12 +11,3 @@ Feature: Orders management - Order List
     And the page contains a table with the orders already processed
     And the page contains the button add new order
     And the page contains the button start new plan
-
-  # Scenario: The user starts a Plan
-  #   When the user navigates to the start a Plan page
-  #   And the user selects a Depot
-  #   And the user clicks on the start the Plan
-  #   Then all the orders with the status “Order placed” are processed
-  #   And the user is redirected to the plan tracking page
-  #   And the user can see the delivery tracking
-  #   And all the orders of the plan have now the status “Preparing for shipment”

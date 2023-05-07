@@ -23,7 +23,7 @@ const OrdersPlanRoutes: FastifyPluginAsync = async (server: FastifyInstance, opt
         },
         async (request: CreatePlanRequest, reply: FastifyReply) => {
             const order = await planService.createPlan(request.body as CreatePlanParams);
-            reply.statusCode = 203;
+            reply.statusCode = 201;
             return { order };
         }
     );

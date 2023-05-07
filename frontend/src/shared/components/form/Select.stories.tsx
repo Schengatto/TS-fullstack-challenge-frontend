@@ -1,16 +1,15 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import DropDown from './DropDown';
+import Select from './Select';
 
 export default {
-  title: 'Components/form/DropDown',
-  component: DropDown,
+  title: 'Components/form/Select',
+  component: Select,
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as ComponentMeta<typeof DropDown>;
+} as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof DropDown> = (args) => <DropDown {...args} />;
+const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

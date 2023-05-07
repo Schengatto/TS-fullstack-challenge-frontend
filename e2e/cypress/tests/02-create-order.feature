@@ -1,4 +1,5 @@
 Feature: Orders management - Create Order
+  The user should be able to create a new order using the Create Order page.
 
   Background:
     Given a user that accesses the application

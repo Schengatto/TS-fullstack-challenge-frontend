@@ -41,6 +41,11 @@ class OrdersList {
         const orderRow = cy.get("[data-test=\"OrderList__Table__readyOrders\"] [data-test=\"Table_Row_0\"]");
         orderRow.click();
     }
+
+    openFirstProcessedOrder() {
+        const orderRow = cy.get("[data-test=\"OrderList__Table__processedOrders\"] [data-test=\"Table_Row_0\"]");
+        orderRow.click();
+    }
 }
 
 export default OrdersList;
