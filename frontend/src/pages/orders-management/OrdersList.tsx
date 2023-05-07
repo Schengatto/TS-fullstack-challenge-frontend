@@ -65,23 +65,25 @@ const OrdersList: FunctionComponent = () => {
         <Component>
             <PageTitle title="Orders List" />
 
-            <Card footer={addNewOrderButton} data-test="ListOrders__Table">
+            <Card footer={addNewOrderButton}>
                 <Table
                     title='Orders ready for plan'
                     items={ordersForPlan}
                     headers={headers}
                     searchKeys={["id", "status"]}
                     isLoading={isFetchingData}
+                    data-test="OrderList__Table__readyOrders"
                     onRowClick={handleOrderClick} />
             </Card>
 
-            <Card data-test="ListOrders__Table" className="mt-3" >
+            <Card className="mt-3" >
                 <Table bgColor="#71baffa3"
                     title='Orders processed'
                     items={ordersPlanned}
                     headers={headers}
                     searchKeys={["id", "status"]}
                     isLoading={isFetchingData}
+                    data-test="OrderList__Table__processedOrders"
                     onRowClick={handleOrderClick} />
             </Card>
         </Component>

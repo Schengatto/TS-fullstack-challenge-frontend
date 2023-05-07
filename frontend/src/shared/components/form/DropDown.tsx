@@ -28,13 +28,13 @@ export interface SelectProps {
     onChange: (value: any) => void;
 }
 
-const Select: FunctionComponent<SelectProps> = ({ items, onChange }) => {
+const Select: FunctionComponent<SelectProps> = ({ items, onChange, ...rest }) => {
     const handleChange = (e: any) => {
         onChange(e.target.value);
     };
 
     return (
-        <Component onChange={handleChange}>
+        <Component onChange={handleChange} {...rest}>
             {items.map((option, index) => <option key={index} value={option.value}>{option.label}</option>)}
         </Component>
     );

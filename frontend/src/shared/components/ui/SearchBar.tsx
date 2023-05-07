@@ -36,7 +36,7 @@ export interface SearchBarProps {
     onSearch: (terms: string) => void;
 }
 
-const SearchBar: FunctionComponent<SearchBarProps> = ({ placeHolder, onSearch }) => {
+const SearchBar: FunctionComponent<SearchBarProps> = ({ placeHolder, onSearch, ...rest }) => {
     const [ searchTerm, setSearchTerm ] = useState(null);
 
     const handleSearch = (event: any) => setSearchTerm(event.target.value);
@@ -50,7 +50,7 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ placeHolder, onSearch })
     }, [ searchTerm, onSearch ]);
 
     return (
-        <Component>
+        <Component {...rest}>
             <input
                 type="text"
                 placeholder={placeHolder}

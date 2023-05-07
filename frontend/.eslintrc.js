@@ -3,11 +3,9 @@ module.exports = {
     env: {
         browser: true,
         node: true,
-        "cypress/globals": true
     },
     extends: [
         "react-app",
-        "plugin:cypress/recommended"
     ],
     rules: {
         "no-console": "warn",
@@ -22,11 +20,5 @@ module.exports = {
         "comma-dangle": [ "warn", "never" ],
         "no-multiple-empty-lines": [ "warn", { "max": 1, "maxEOF": 1 } ],
         "semi": [ "warn", "always" ],
-        "cypress/no-assigning-return-values": "error",
-        "cypress/assertion-before-screenshot": "warn",
-        "cypress/no-force": "warn",
-        "cypress/no-async-tests": "error",
-        "cypress/no-pause": "error",
-        "cypress/no-unnecessary-waiting": "never"
     }
 };

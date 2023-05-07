@@ -51,9 +51,9 @@ export interface HelpProps {
     onClick?: () => void;
 }
 
-const HelpButton: FunctionComponent<HelpProps> = ({ label, size, onClick }) => {
+const HelpButton: FunctionComponent<HelpProps> = ({ label, size, onClick, ...rest }) => {
     return (
-        <Component onClick={onClick}>
+        <Component onClick={onClick} {...rest}>
             <div className={`icon ${size ?? "normal"}`}>?</div>
             <div className={`label ${size ?? "normal"}`}>{label ?? "Help"}</div>
         </Component>

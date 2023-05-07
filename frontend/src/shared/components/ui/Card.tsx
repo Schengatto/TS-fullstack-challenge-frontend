@@ -27,9 +27,9 @@ export interface CardProps {
     className?: string;
 }
 
-const Card: FunctionComponent<CardProps> = ({ children, header, footer, className }) => {
+const Card: FunctionComponent<CardProps> = ({ children, header, footer, className, ...rest }) => {
     return (
-        <Component className={className}>
+        <Component className={className} {...rest}>
             {header && <div className="card__header">{header}</div>}
             <div className="card__body">{children}</div>
             {footer && <div className="card__footer">{footer}</div>}

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 import { toPascalCase } from "../../utils/string-utils";
 
@@ -32,13 +32,14 @@ export interface ButtonProps {
     onClick?: () => void;
 }
 
-const Button: FunctionComponent<ButtonProps> = ({ label, disabled, type, onClick: handleClick }) => {
+const Button: FunctionComponent<ButtonProps> = ({ label, disabled, type, onClick: handleClick, ...rest }) => {
     return (
         <Component
             type={type ?? "button"}
             onClick={handleClick}
             disabled={disabled}
-            data-test={`Button__${toPascalCase(label)}`}>
+            data-test={`Button__${toPascalCase(label)}`}
+            {...rest}>
             {label}
         </Component>
     );

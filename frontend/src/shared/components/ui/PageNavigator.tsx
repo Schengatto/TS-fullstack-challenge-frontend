@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 import { PageInfo } from "../../models/pagination";
 import Icon from "./Icon";
@@ -40,7 +40,7 @@ export interface PageNavigatorProps extends PageInfo {
     onPageChange: (pageInfo: PageInfo) => void
 }
 
-const PageNavigator: FunctionComponent<PageNavigatorProps> = ({ pageCount, pageNumber, pageSize, onPageChange }) => {
+const PageNavigator: FunctionComponent<PageNavigatorProps> = ({ pageCount, pageNumber, pageSize, onPageChange, ...rest }) => {
     const pageOptions = [ 5, 10, 20, 50 ];
 
     const handlePageSizeChange = (value: string) => {
@@ -59,7 +59,7 @@ const PageNavigator: FunctionComponent<PageNavigatorProps> = ({ pageCount, pageN
 
     return (
         <Component>
-            <div className="page-navigator__wrapper">
+            <div className="page-navigator__wrapper" {...rest}>
                 <div>Page records:</div>
                 <select
                     value={pageSize}

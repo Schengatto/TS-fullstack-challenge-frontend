@@ -101,7 +101,7 @@ export interface TableProps {
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKeys, footer, readonly, isLoading, bgColor, emptyTableMessage, onRowClick }) => {
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKeys, footer, readonly, isLoading, bgColor, emptyTableMessage, onRowClick, ...rest }) => {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [pageItems, setPageItems] = useState<any[]>([]);
     const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
@@ -145,7 +145,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
         : (<div className="table__no-data">{emptyTableMessage ? emptyTableMessage : "No results"}</div>);
 
     return (
-        <Component className={readonly ? "disabled" : ""} bgColor={bgColor}>
+        <Component className={readonly ? "disabled" : ""} bgColor={bgColor} {...rest}>
             <div className="table__pre-append">
                 <div className="table__title">
                     <strong>{title}</strong>

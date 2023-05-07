@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const Component = styled.div`
@@ -89,9 +89,9 @@ export interface CheckBoxProps {
     onChange?: () => void;
 }
 
-const CheckBox: FunctionComponent<CheckBoxProps> = ({ label, checked, disabled, onChange }) => {
+const CheckBox: FunctionComponent<CheckBoxProps> = ({ label, checked, disabled, onChange, ...rest }) => {
     return (
-        <Component>
+        <Component {...rest}>
             <label htmlFor="label" className={`container ${disabled && "text-disabled"}`}>{label}
                 <input
                     type="checkbox"
