@@ -3,6 +3,7 @@ import { MOCKED_DATA_PLANS } from "../data/plans";
 import { Order, OrderStatus } from "../models/order";
 import { Package } from "../models/package";
 import { CreatePlanParams, PlanInfo, PlanStep } from "../models/plan";
+import { orderAscByProperty } from "../utils/array";
 import ordersServices from "./order-service";
 
 class PlanService {
@@ -33,11 +34,12 @@ class PlanService {
             });
         });
 
+        const orderedSteps = orderAscByProperty(steps, "location.city");
         const depot = MOCKED_DATA_DEPOTS.find((depot) => depot.id === depotId);
-        steps.unshift({ location: depot!.addressInfo });
-        steps.push({ location: depot!.addressInfo });
+        orderedSteps.unshift({ location: depot!.addressInfo });
+        orderedSteps.push({ location: depot!.addressInfo });
 
-        const newPlan: PlanInfo = { id: planId, steps };
+        const newPlan: PlanInfo = { id: planId, steps: orderedSteps };
         MOCKED_DATA_PLANS.push(newPlan);
 
         return Promise.resolve(newPlan);
