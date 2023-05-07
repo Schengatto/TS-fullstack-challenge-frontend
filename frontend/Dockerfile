@@ -4,7 +4,7 @@ FROM node:18-alpine AS appbuild
 WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 # Bundle app source
 COPY . .
 RUN ["npm", "run", "build"]
@@ -12,6 +12,7 @@ RUN ["npm", "run", "build"]
 # Build Stage 2
 # Takes the production build from staging build
 FROM nginx:1.23.3-alpine as apprunner
+COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=appbuild /usr/src/app/build .

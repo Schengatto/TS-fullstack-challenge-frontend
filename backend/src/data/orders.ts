@@ -9,7 +9,7 @@ export const MOCKED_DATA_ORDERS: Order[] = [
             {
                 code: "P0001",
                 destination: {
-                    owner: "Topo",
+                    owner: "Gigi",
                     address: "Via scura",
                     city: "Milano",
                     latitude: 10,
