@@ -23,7 +23,7 @@ const OrderCreate: FunctionComponent = () => {
         if (isSaving) return;
 
         setIsSaving(true);
-        await ordersService.addOrder(order).finally(() => setIsSaving(false));
+        await ordersService.createOrder(order).finally(() => setIsSaving(false));
         handleCancel();
     };
 

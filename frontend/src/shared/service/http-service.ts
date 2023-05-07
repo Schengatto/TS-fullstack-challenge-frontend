@@ -101,6 +101,13 @@ class HttpService {
         });
     }
 
+    async patch<TResponse = void>(requestInfo: RequestInfo): Promise<AxiosResponse<TResponse>> {
+        const { parameters, payload, url, headers } = requestInfo;
+        return await this.axios.patch<TResponse>(`${url}${buildUrlQueryParams(parameters || {})}`, payload, {
+            headers: headers,
+        });
+    }
+
     async delete<TResponse = void>(requestInfo: RequestInfo): Promise<AxiosResponse<TResponse>> {
         const { parameters, url, headers } = requestInfo;
         return await this.axios.delete<TResponse>(`${url}${buildUrlQueryParams(parameters || {})}`, {

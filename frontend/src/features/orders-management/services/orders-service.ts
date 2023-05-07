@@ -1,5 +1,4 @@
-import { Order, OrderStatus } from "../models/order";
-import { MOCKED_DATA_ORDERS } from "../data/orders";
+import { Order} from "../models/order";
 import { RequestBuilder } from "shared/utils/request-builder";
 import httpService from "shared/service/http-service";
 
@@ -14,34 +13,19 @@ class OrdersService {
         return await httpService.get<Order>(request).then((res) => res.data);
     }
 
-    async addOrder(order: Order): Promise<boolean> {
-        await this.delay(2500);
-        MOCKED_DATA_ORDERS.push(order);
-        return Promise.resolve(true);
+    async createOrder(order: Order): Promise<Order> {
+        const request = new RequestBuilder().withURL("order").withPayload(order).build();
+        return await httpService.post<Order>(request).then((res) => res.data);
     }
 
-    async updateOrder(order: Order): Promise<boolean> {
-        await this.delay(500);
-        const index = MOCKED_DATA_ORDERS.findIndex((m) => m.id === order.id);
-        if (index >= 0) {
-            MOCKED_DATA_ORDERS[index] = order;
-            return Promise.resolve(true);
-        }
-        return Promise.resolve(false);
+    async updateOrder(order: Order): Promise<void> {
+        const request = new RequestBuilder().withURL(`order/${order.id}`).build();
+        await httpService.patch<Order>(request);
     }
 
-    async deleteOrder(id: string): Promise<boolean> {
-        await this.delay(500);
-        const order = MOCKED_DATA_ORDERS.find((m) => m.id === id);
-        if (order) {
-            order.status = OrderStatus.Cancelled;
-            return Promise.resolve(true);
-        }
-        return Promise.resolve(false);
-    }
-
-    private async delay(time: number) {
-        return new Promise((resolve) => setTimeout(resolve, time));
+    async deleteOrder(id: string): Promise<void> {
+        const request = new RequestBuilder().withURL(`order/${id}`).build();
+        await httpService.delete<Order>(request);
     }
 }
 

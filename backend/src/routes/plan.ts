@@ -9,7 +9,7 @@ declare module "fastify" {
     export interface FastifyInstance {}
 }
 
-const OrdersManagementRoutes: FastifyPluginAsync = async (server: FastifyInstance, options: FastifyPluginOptions) => {
+const OrdersPlanRoutes: FastifyPluginAsync = async (server: FastifyInstance, options: FastifyPluginOptions) => {
     server.get(`/plan/:id`, async (request: GetPlanRequest, reply: FastifyReply) => {
         return await planService.getPlan(request.params.id);
     });
@@ -28,4 +28,4 @@ const OrdersManagementRoutes: FastifyPluginAsync = async (server: FastifyInstanc
         }
     );
 };
-export default fp(OrdersManagementRoutes);
+export default fp(OrdersPlanRoutes);
