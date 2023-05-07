@@ -30,4 +30,6 @@ export interface Order {
     planId?: string;
 }
 
-export interface CreateOrder extends Omit<Order, "id" | "status" | "createAt" | "planId"> {}
+export interface CreateOrderParams extends Omit<Order, "id" | "status" | "createAt" | "planId"> {}
+
+export interface UpdateOrderParams extends Omit<Order, "status" | "createAt" | "planId"> {}
