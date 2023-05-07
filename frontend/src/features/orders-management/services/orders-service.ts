@@ -6,17 +6,12 @@ import httpService from "shared/service/http-service";
 class OrdersService {
     async getOrders(): Promise<Order[]> {
         const request = new RequestBuilder().withURL("order").build();
-        // try {
-            return await httpService.get<Order[]>(request).then((res) => res.data);
-        // } catch (error: any) {
-        //     if (error.name === "CanceledError") return Promise.resolve([]);
-        //     throw new Error(error.message);
-        // }
+        return await httpService.get<Order[]>(request).then((res) => res.data);
     }
 
     async getOrder(id: string): Promise<Order | undefined> {
-        await this.delay(500);
-        return Promise.resolve(MOCKED_DATA_ORDERS.find((m) => m.id === id));
+        const request = new RequestBuilder().withURL(`order/${id}`).build();
+        return await httpService.get<Order>(request).then((res) => res.data);
     }
 
     async addOrder(order: Order): Promise<boolean> {

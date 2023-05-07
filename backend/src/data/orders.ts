@@ -4,6 +4,7 @@ export const MOCKED_DATA_ORDERS: Order[] = [
     {
         id: "0001",
         status: OrderStatus.OrderPlaced,
+        createAt: new Date("2023-05-06"),
         packages: [
             {
                 code: "P0001",
@@ -37,6 +38,7 @@ export const MOCKED_DATA_ORDERS: Order[] = [
     {
         id: "0002",
         status: OrderStatus.Shipped,
+        createAt: new Date("2023-05-07"),
         packages: [
             {
                 code: "P0003",

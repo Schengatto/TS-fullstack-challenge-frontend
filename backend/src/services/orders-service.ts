@@ -1,5 +1,5 @@
 import { MOCKED_DATA_ORDERS } from "../data/orders";
-import { Order, OrderStatus } from "../models/order";
+import { CreateOrder as CreateOrderParams, Order, OrderStatus } from "../models/order";
 
 class OrdersService {
     async getOrders(): Promise<Order[]> {
@@ -10,9 +10,10 @@ class OrdersService {
         return Promise.resolve(MOCKED_DATA_ORDERS.find((m) => m.id === id));
     }
 
-    async createOrder(order: Order): Promise<boolean> {
-        MOCKED_DATA_ORDERS.push({ ...order, id: `O${Date.now}`, status: OrderStatus.OrderPlaced });
-        return Promise.resolve(true);
+    async createOrder(createOrder: CreateOrderParams): Promise<Order> {
+        const order = { ...createOrder, id: `O${Date.now()}`, status: OrderStatus.OrderPlaced, createAt: new Date() };
+        MOCKED_DATA_ORDERS.push(order);
+        return Promise.resolve(order);
     }
 
     async updateOrder(order: Order): Promise<boolean> {

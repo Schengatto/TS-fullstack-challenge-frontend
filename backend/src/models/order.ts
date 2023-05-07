@@ -21,11 +21,13 @@ export enum OrderStatus {
 }
 
 export interface Order {
-    id?: string;
+    id: string;
     packages: Package[];
     status: OrderStatus;
     invoiceId: string;
-    createAt?: string;
+    createAt: Date;
     notes?: string;
     planId?: string;
 }
+
+export interface CreateOrder extends Omit<Order, "id" | "status" | "createAt" | "planId"> {}
