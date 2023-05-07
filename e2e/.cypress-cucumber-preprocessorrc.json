@@ -1,0 +1,24 @@
+{
+  "filterSpecs": true,
+  "omitFiltered": true,
+  "html": {
+    "enabled": true,
+    "output": "cypress/report/cucumber.html"
+  },
+  "messages": {
+    "enabled": true,
+    "output": "cypress/report/messages/cucumber-messages.ndjson"
+  },
+  "stepDefinitions": [
+    "cypress/[filepath]/**/*.steps.{js,ts}",
+    "cypress/[filepath].steps.{js,ts}"
+  ],
+  "json": {
+    "enabled": true,
+    "output": "cypress/report/cucumber.json",
+    "formatter": "node",
+    "args": [
+      "./node_modules/@deepakvishwakarma/cucumber-json-formatter/lib/main.js"
+    ]
+  }
+}
