@@ -1,7 +1,7 @@
 import { MOCKED_DATA_ORDERS } from "../data/orders";
 import { CreateOrderParams, Order, OrderStatus, UpdateOrderParams } from "../models/order";
 
-class OrdersService {
+class OrderService {
     async getOrders(): Promise<Order[]> {
         return Promise.resolve(MOCKED_DATA_ORDERS);
     }
@@ -38,4 +38,4 @@ class OrdersService {
     }
 }
 
-export default new OrdersService();
+export default new OrderService();

@@ -1,4 +1,4 @@
-import { PlanInfo } from "../models/depot";
+import { PlanInfo } from "../models/plan";
 
 export const MOCKED_DATA_PLANS: PlanInfo[] = [
     {

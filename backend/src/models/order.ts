@@ -32,4 +32,4 @@ export interface Order {
 
 export interface CreateOrderParams extends Omit<Order, "id" | "status" | "createAt" | "planId"> {}
 
-export interface UpdateOrderParams extends Omit<Order, "status" | "createAt" | "planId"> {}
+export interface UpdateOrderParams extends Omit<Order, "createAt"> {}

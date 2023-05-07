@@ -5,14 +5,3 @@ export interface Depot {
     name: string;
     addressInfo: AddressInfo;
 }
-
-export interface PlanInfo {
-    id?: string;
-    steps: PlanStep[];
-}
-
-export interface PlanStep {
-    location: AddressInfo;
-    orderId?: string;
-    packageCode?: string;
-}

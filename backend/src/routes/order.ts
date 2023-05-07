@@ -3,7 +3,7 @@ import fp from "fastify-plugin";
 import { CreateOrderRequest, DeleteOrderRequest, GetOrderRequest, UpdateOrderRequest } from "./order.d";
 import { createOrderBodySchema, updateOrderBodySchema } from "../schemas/oder";
 import { CreateOrderParams, UpdateOrderParams } from "../models/order";
-import ordersService from "../services/orders-service";
+import ordersService from "../services/order-service";
 
 declare module "fastify" {
     export interface FastifyInstance {}
