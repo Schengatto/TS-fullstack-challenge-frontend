@@ -1,8 +1,9 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "shared/components/ui/Button";
 import Select from "shared/components/form/DropDown";
-import { MOCKED_DATA_DEPOTS } from "features/orders-plan/data/depots";
+import depotService from "features/orders-plan/services/depot-service";
+import { Depot } from "features/orders-plan/models/depot";
 
 const FormGroup = styled.div`
     .form-row {
@@ -26,6 +27,11 @@ const FormGroup = styled.div`
     }
 `;
 
+interface DepotItem {
+    label: string;
+    value: string | null;
+}
+
 interface PlanFormProps {
     disabled?: boolean;
     onCancel: () => void;
@@ -34,9 +40,18 @@ interface PlanFormProps {
 
 const PlanForm: FunctionComponent<PlanFormProps> = ({ disabled, onCancel, onSubmit }) => {
 
+    const [depots, setDepots] = useState<Depot[]>([]);
     const [depotId, setFormFields] = useState<string | null>(null);
 
+
     const isFormValid = !!depotId && !disabled;
+    const items: DepotItem[] = [{ label: "", value: null }, ...depots.map(d => ({ label: d.name, value: d.id }))];
+
+    useEffect(() => {
+        depotService.getDepots()
+            .then(depots => setDepots(depots));
+    }, []);
+
 
     const handleDepotChange = (depotId: string) => {
         setFormFields(() => depotId);
@@ -51,9 +66,6 @@ const PlanForm: FunctionComponent<PlanFormProps> = ({ disabled, onCancel, onSubm
     const handleCancel = (): void => {
         onCancel();
     };
-
-    const items: any[] = MOCKED_DATA_DEPOTS.map(d => ({ label: d.name, value: d.id }));
-    items.unshift({ label: "", value: null });
 
     return (
         <FormGroup>

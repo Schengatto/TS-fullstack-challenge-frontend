@@ -18,13 +18,13 @@ const Component = styled.select`
     }
 `;
 
-export interface Item {
+interface SelectOption {
     label: string;
     value: any;
 }
 
 export interface SelectProps {
-    items: Item[];
+    items: SelectOption[];
     onChange: (value: any) => void;
 }
 
