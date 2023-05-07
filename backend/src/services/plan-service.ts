@@ -7,17 +7,20 @@ import ordersServices from "./order-service";
 
 class PlanService {
     async createPlan(cratePlanParams: CreatePlanParams): Promise<PlanInfo> {
-        const {depotId, ordersId} = cratePlanParams;
+        const { depotId, ordersId } = cratePlanParams;
         const planId = `P${Date.now()}`;
         const orders = new Array<Order>();
 
         for (let id of ordersId) {
             const order = await ordersServices.getOrder(id);
             if (order) {
+                if (order.planId) throw new Error(`Order '${order.id}' is already in the plan '${order.planId}'`);
                 orders.push(order);
                 await ordersServices.updateOrder({ ...order, status: OrderStatus.PreparingForShipment, planId });
             }
         }
+
+        if (!orders.length) throw new Error("No orders found. The plan can't be created.");
 
         const steps = new Array<PlanStep>();
         orders.forEach((order) => {
