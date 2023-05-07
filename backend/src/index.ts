@@ -13,17 +13,8 @@ const start = async () => {
         fastify.register(DepotsRoutes);
 
         await fastify.register(cors, {
-            // put your options here
-            origin: (origin, cb) => {
-                const hostname = new URL(origin).hostname;
-                if (hostname === "localhost") {
-                    //  Request from localhost will pass
-                    cb(null, true);
-                    return;
-                }
-                // Generate an error on other origins, disabling access
-                cb(new Error("Not allowed"), false);
-            },
+            // CORS disabled for this challenge
+            origin: false
         });
         await fastify.listen({ port: 3000, host: "0.0.0.0" });
     } catch (err) {
