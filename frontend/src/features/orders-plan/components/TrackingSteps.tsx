@@ -34,8 +34,8 @@ const Step = styled.div`
             border-radius: 32px;
             width: 42px;
             height: 42px;
-            border: 2px solid var(--primary-bg-color);
-            background: var(--primary-hover-bg-color);
+            border: 2px solid #b8ffaf;
+            background: #169e83;
         }
 
         .step-description {
@@ -44,7 +44,7 @@ const Step = styled.div`
         }
     }
     .step-line {
-        background: var(--primary-bg-color);
+        background: #b8ffaf;
         width: 5px;
         height: 50px;
         margin-left: 21px;
@@ -62,7 +62,7 @@ const TrackingSteps: FunctionComponent<TrackingStepsProps> = ({ steps }) => {
             <div className="step-info">
                 <div className="step-circle" />
                 <div className="step-description">
-                    <div>{step.location.owner} - {step.location.city}</div>
+                    <div>To: {step.location.owner} @ {step.location.city}</div>
                     {step.orderId && <div>Order ID: {step.orderId} - Package ID: {step.packageCode}</div>}
                 </div>
             </div>
