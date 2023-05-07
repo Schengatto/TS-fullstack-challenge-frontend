@@ -1,12 +1,13 @@
-Feature: Orders management
+Feature: Orders management - Orders list
 
   Background:
     Given a user that accesses the application
 
   Scenario: The user can see the list of orders
     When the user navigates to the orders list page
-    Then the user sees a table with the current orders
-
+    Then the page contains a table with the orders ready to be inserted into a new plan
+    And the page contains a table with the orders already processed
+    
   # Scenario: The user creates a new order
   #   When the user opens the create new order page
   #   And the user fills out the “Create a new order” form with the required information

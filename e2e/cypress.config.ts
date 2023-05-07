@@ -46,7 +46,7 @@ module.exports = defineConfig({
         video: false,
         videosFolder: "cypress/report/video",
         screenshotsFolder: "cypress/report/screenshots",
-        specPattern: ["**/*.feature", "cypress/features/**/*.cy.{js,jsx,ts,tsx}"],
+        specPattern: ["**/*.feature", "cypress/tests/**/*.cy.{js,jsx,ts,tsx}"],
     },
     env: {
         TAGS: "not @ignore",

@@ -18,7 +18,7 @@
     "webpack-cli": "5.0.1"
   },
   "scripts": {
-    "e2e:cypress:chrome": "cypress run --browser chrome --spec \"cypress/features/**/*\" --headless",
+    "e2e:cypress:chrome": "cypress run --browser chrome --spec \"cypress/tests/**/*\" --headless",
     "e2e:cypress:chrome-live": "cypress run --browser chrome --spec \"cypress/features/**/*\" --headed",
     "e2e:cypress:edge": "cypress run --browser edge --spec \"cypress/features/**/*\" --headless",
     "e2e:cypress:edge-live": "cypress run --browser edge --spec \"cypress/features/**/*\" --headed",
