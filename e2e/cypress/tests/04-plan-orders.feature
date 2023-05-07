@@ -1,5 +1,6 @@
 Feature: Orders management - Plan Orders
-  The user 
+  The user can create a new plan to process the orders having the status "Order Placed".
+  Once the plan is created, it will be possible to check the tracking plan related to each order processed.
 
   Background:
     Given a user that accesses the application
