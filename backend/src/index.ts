@@ -14,7 +14,7 @@ const start = async () => {
 
         await fastify.register(cors, {
             // CORS disabled for this challenge
-            origin: false
+            origin: true
         });
         await fastify.listen({ port: 3000, host: "0.0.0.0" });
     } catch (err) {
