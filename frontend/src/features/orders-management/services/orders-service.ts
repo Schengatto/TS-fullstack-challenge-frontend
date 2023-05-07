@@ -1,6 +1,6 @@
 import { Order} from "../models/order";
 import { RequestBuilder } from "shared/utils/request-builder";
-import httpService from "shared/service/http-service";
+import httpService from "shared/services/http-service";
 
 class OrdersService {
     async getOrders(): Promise<Order[]> {

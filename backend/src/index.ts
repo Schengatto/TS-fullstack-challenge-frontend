@@ -1,4 +1,5 @@
 import cors from "@fastify/cors";
+import HealthCheckRoutes from "./routes/health";
 import OrdersManagementRoutes from "./routes/order";
 import OrdersPlanRoutes from "./routes/plan";
 import DepotsRoutes from "./routes/depot";
@@ -8,6 +9,7 @@ const fastify = require("fastify")({ logger: true });
 const start = async () => {
     try {
         // Routes
+        fastify.register(HealthCheckRoutes)
         fastify.register(OrdersManagementRoutes);
         fastify.register(OrdersPlanRoutes);
         fastify.register(DepotsRoutes);
