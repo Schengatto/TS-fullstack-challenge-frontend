@@ -27,11 +27,11 @@ const OrderCreate: FunctionComponent = () => {
         handleCancel();
     };
 
-    const pageTitle = (<PageTitle title="Create Order" />);
-
     return (
         <Component>
-            <Card header={pageTitle}>
+            <PageTitle title="Create Order" />
+
+            <Card>
                 <OrderForm
                     readonly={isSaving}
                     onCancel={handleCancel}

@@ -50,8 +50,6 @@ const OrdersList: FunctionComponent = () => {
     const handleAddNewOrder = () => navigate("/order/create");
     const handleStartNewPlan = () => navigate("/plan/create");
 
-    const pageTitle = (<PageTitle title="Orders List" />);
-
     const addNewOrderButton = (
         <ButtonsGroup>
             <Button
@@ -65,7 +63,9 @@ const OrdersList: FunctionComponent = () => {
 
     return (
         <Component>
-            <Card header={pageTitle} footer={addNewOrderButton} data-test="ListOrders__Table">
+            <PageTitle title="Orders List" />
+
+            <Card footer={addNewOrderButton} data-test="ListOrders__Table">
                 <Table
                     title='Orders ready for plan'
                     items={ordersForPlan}

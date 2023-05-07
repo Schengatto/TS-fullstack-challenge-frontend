@@ -109,7 +109,8 @@ const OrderDetail: FunctionComponent = () => {
 
     return (
         <Component>
-            <Card header={viewModeTitle} footer={!isEditMode && viewModeActions}>
+            {viewModeTitle}
+            <Card  footer={!isEditMode && viewModeActions}>
                 <OrderForm
                     readonly={!isEditMode}
                     order={currentOrder}

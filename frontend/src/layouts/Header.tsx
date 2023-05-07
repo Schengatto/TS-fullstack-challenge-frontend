@@ -7,7 +7,7 @@ const Component = styled.div`
         padding: 0 1rem;
         position: fixed;
         width: 100%;
-        background-color: white;
+        background-color: #ffffff9a;
         color: #1a1238 ;
         font-variant: small-caps;
         z-index: 10;

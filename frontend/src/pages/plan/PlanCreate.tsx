@@ -2,7 +2,6 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Card from "shared/components/ui/Card";
-import PageTitle from "shared/components/PageTitle";
 import Table from "shared/components/ui/Table";
 import { getUniqueValues } from "shared/utils/array-utils";
 import { Order, OrderStatus } from "features/orders-management/models/order";
@@ -10,6 +9,7 @@ import ordersService from "features/orders-management/services/orders-service";
 import planService from "features/orders-plan/services/plan-service";
 import { Package } from "features/orders-management/models/package";
 import PlanForm from "features/orders-plan/components/form/PlanForm";
+import PageTitle from "shared/components/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;
@@ -47,11 +47,11 @@ const PlanCreate: FunctionComponent = () => {
         navigate("/order");
     };
 
-    const pageTitle = (<PageTitle title="New Plan" />);
-
     return (
         <Component>
-            <Card header={pageTitle}>
+            <PageTitle title="New Plan" />
+
+            <Card>
                 <Table
                     title='Orders added in the new plan'
                     items={orders}

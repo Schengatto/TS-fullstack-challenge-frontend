@@ -144,6 +144,7 @@ const OrderForm: FunctionComponent<OrderFormProps> = ({ order, readonly, onCance
                         headers={packagesTableHeaders}
                         items={formFields.packages}
                         searchKeys={["code"]}
+                        emptyTableMessage="The order must contain at least one package"
                         onRowClick={handleEditPackage} />
                 )}
 

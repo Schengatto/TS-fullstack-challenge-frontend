@@ -97,16 +97,19 @@ export interface TableProps {
     readonly?: boolean;
     isLoading?: boolean;
     bgColor?: string;
+    emptyTableMessage?: string;
     onRowClick?: (item: any) => void;
 }
 
-const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKeys, footer, readonly, isLoading, bgColor, onRowClick }) => {
+const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers, items, searchKeys, footer, readonly, isLoading, bgColor, emptyTableMessage, onRowClick }) => {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [pageItems, setPageItems] = useState<any[]>([]);
     const [pageInfo, setPageInfo] = useState<PageInfo>({ pageNumber: 1, pageSize: 10 });
     const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const applyFilter = (item: any, searchKey: string) => getFieldValue(item, searchKey).toLowerCase().includes(searchTerm.toLowerCase());
+    const applyFilter = (item: any, searchKey: string) => getFieldValue(item, searchKey)
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
 
     useEffect(() => {
         const matchTerms = items.filter((item: any) => searchKeys.some(key => applyFilter(item, key)));
@@ -139,7 +142,7 @@ const Table: FunctionComponent<TableProps> = ({ title, actions: filters, headers
 
     const emptyTable = isLoading
         ? (<div className="table__no-data">Loading...</div>)
-        : (<div className="table__no-data">No results</div>);
+        : (<div className="table__no-data">{emptyTableMessage ? emptyTableMessage : "No results"}</div>);
 
     return (
         <Component className={readonly ? "disabled" : ""} bgColor={bgColor}>

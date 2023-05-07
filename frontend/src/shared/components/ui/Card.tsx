@@ -2,13 +2,21 @@ import { FunctionComponent, ReactNode } from "react";
 import styled from "styled-components";
 
 const Component = styled.div`
-    background-color: #ffff;
+    background-color: #ffffff;
     margin: 1rem;
     border-radius: 0.25rem;
 
     .card__header{
         border-bottom: 2px solid #f2f0fa;
-        padding: 1rem;
+        padding: 0.5rem;
+    }
+
+    .card__body {
+        padding: 0.5rem;
+    }
+
+    .card__footer{
+        padding: 0.5rem;
     }
 `;
 
