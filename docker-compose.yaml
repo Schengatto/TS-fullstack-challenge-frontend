@@ -29,6 +29,11 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - react-challenge-app-frontend
-    volume:
-      - react
+    volumes:
+      - type: bind
+        source: "/cypress/report"
+        target: /usr/src/app/cypress/report
+        volume:
+          nocopy: true
+
 
