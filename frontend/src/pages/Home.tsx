@@ -11,7 +11,7 @@ const Component = styled.div`
         text-align: center;
 
         div {
-            width: 340px;
+            max-width: 340px;
             margin: auto;
         }
 `;
