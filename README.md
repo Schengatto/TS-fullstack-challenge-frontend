@@ -31,7 +31,7 @@ La soluzione proposta consiste in 3 progetti node:
 
 E' possibile avviare l'applicazione sulla propria macchina sia mediante **script npm** sia attraverso **Docker**.
 
-In particolare, per eseguire tutti i servizi con docker sarà sufficiente eseguire il file bash `docker-start-app.sh` all'interno della cartella principale. Per maggiori dettagli visita:
+In particolare, per eseguire tutti i servizi con docker sarà sufficiente eseguire il file bash `docker-start-app.sh` all'interno della cartella principale. Per maggiori informazioni puoi consultare il capitolo [Docker](#docker).
 
 ### Frontend - React Client
 
