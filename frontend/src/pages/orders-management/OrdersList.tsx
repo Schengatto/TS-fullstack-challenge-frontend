@@ -70,7 +70,7 @@ const OrdersList: FunctionComponent = () => {
                     title='Orders ready for plan'
                     items={ordersForPlan}
                     headers={headers}
-                    searchKeys={["id", "status"]}
+                    searchKeys={["id", "status", "invoiceId"]}
                     isLoading={isFetchingData}
                     data-test="OrderList__Table__readyOrders"
                     onRowClick={handleOrderClick} />
@@ -81,7 +81,7 @@ const OrdersList: FunctionComponent = () => {
                     title='Orders processed'
                     items={ordersPlanned}
                     headers={headers}
-                    searchKeys={["id", "status"]}
+                    searchKeys={["id", "status", "invoiceId"]}
                     isLoading={isFetchingData}
                     data-test="OrderList__Table__processedOrders"
                     onRowClick={handleOrderClick} />

@@ -2,8 +2,10 @@ import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import CreateOrder from "../../support/page_objects/create-order";
 import PackageForm from "../../support/page_objects/package-form";
 import OrdersList from "../../support/page_objects/order-list";
+import OrderForm from "../../support/page_objects/order-form";
 
 const createOrder = new CreateOrder();
+const orderForm = new OrderForm();
 const packageForm = new PackageForm();
 const ordersList = new OrdersList();
 
@@ -12,7 +14,7 @@ When("the user navigates to the create new order page", () => {
 });
 
 When("the user fills all the required information for the order", () => {
-  createOrder.fillForm("I9999");
+  orderForm.fillForm("I9999");
 });
 
 When("the user click the button Add a new package", () => {

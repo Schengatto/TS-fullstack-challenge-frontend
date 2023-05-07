@@ -1,4 +1,6 @@
-Feature: Orders management
+Feature: Orders management - Order List
+  The Order list page gives to the user a view to easy check which are the orders ready to be added to a plan and the order already processed.
+  In this page the user can add a new order or start a new plan
 
   Background:
     Given a user that accesses the application
@@ -7,28 +9,8 @@ Feature: Orders management
     When the user navigates to the orders list page
     Then the page contains a table with the orders ready to be inserted into a new plan
     And the page contains a table with the orders already processed
-
-  # Scenario: The user creates a new order
-  #   When the user navigates to the create new order page
-  #   And the user fills out the “Create a new order” form with the required information
-  #   And the user confirm the new order
-  #   Then a new order is created
-  #   And the user is redirected to the order page
-  #   And the user sees the new order in ready orders list
-
-  # Scenario: The user accesses the order detail page
-  #   When the user navigates to the orders list page
-  #   And the user clicks over an order in the orders list
-  #   Then the user is redirected to the order detail page
-  #   And the user is redirected to the order detail page
-  #   And the user sees the order information
-
-  # Scenario: The user updates an existing order
-  #   When the user navigates to the order details page of an existing order
-  #   And the user fills out the “Update the order information”
-  #   And the user confirms the new changes
-  #   Then the selected order is updated
-  #   And the user can see the updated information on the order detail page
+    And the page contains the button add new order
+    And the page contains the button start new plan
 
   # Scenario: The user starts a Plan
   #   When the user navigates to the start a Plan page

@@ -1,10 +1,14 @@
-class CreateOrder {
-    constructor() {
-        this.url = `${Cypress.env("BASE_URL")}/order/create`;
+class OrderDetail {
+    get backButton() {
+        return cy.get("[data-test=\"Button__Back\"]");
     }
 
-    visit() {
-        cy.visit(this.url);
+    get editOrderButton() {
+        return cy.get("[data-test=\"Button__EditOrder\"]");
+    }
+
+    get deleteOrderButton() {
+        return cy.get("[data-test=\"Button__DeleteOrder\"]");
     }
 
     get cancelButton() {
@@ -20,4 +24,4 @@ class CreateOrder {
     }
 }
 
-export default CreateOrder;
+export default OrderDetail;
