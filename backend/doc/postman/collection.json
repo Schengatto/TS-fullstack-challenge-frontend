@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "7ebe6fbd-891a-4bcb-bea4-b6ca76365c27",
+		"name": "Backend Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14189843"
+	},
+	"item": [
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "Get orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/order",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"packages\": [\n        {\n            \"code\": \"P{{$randomInt}}\",\n            \"destination\": {\n                \"owner\": \"{{$randomFullName}}\",\n                \"address\": \"{{$randomStreetName}}\",\n                \"city\": \"{{$randomCity}}\",\n                \"latitude\": \"{{$randomLatitude}}\",\n                \"longitude\": \"{{$randomLongitude}}\",\n                \"postalCode\": \"{{$randomCreditCardMask}}\",\n                \"phoneNumber\": \"{{$randomPhoneNumber}}\"\n            },\n            \"supplierId\": \"S{{$randomInt}}\"\n        }\n    ],\n    \"invoiceId\": \"I{{$randomInt}}\",\n    \"notes\": \"{{$randomPhrase}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/order",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/order/0001",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order",
+								"0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"packages\": [\n        {\n            \"code\": \"P{{$randomInt}}\",\n            \"destination\": {\n                \"owner\": \"{{$randomFullName}}\",\n                \"address\": \"{{$randomStreetName}}\",\n                \"city\": \"{{$randomCity}}\",\n                \"latitude\": \"{{$randomLatitude}}\",\n                \"longitude\": \"{{$randomLongitude}}\",\n                \"postalCode\": \"{{$randomCreditCardMask}}\",\n                \"phoneNumber\": \"{{$randomPhoneNumber}}\"\n            },\n            \"supplierId\": \"S{{$randomInt}}\"\n        }\n    ],\n    \"invoiceId\": \"I{{$randomInt}}\",\n    \"notes\": \"{{$randomPhrase}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/order/0001",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order",
+								"0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/order/0001",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order",
+								"0001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "plan",
+			"item": [
+				{
+					"name": "Get plan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/plan/P0001",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"plan",
+								"P0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"depotId\": \"D0001\",\n   \"ordersId\": [\n       \"O0001\"\n   ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/plan",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"plan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "depot",
+			"item": [
+				{
+					"name": "Get depots",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/depot",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"depot"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

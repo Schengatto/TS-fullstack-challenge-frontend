@@ -1,0 +1,15 @@
+{
+	"id": "7ad14f13-4340-4efa-837a-4fcea64cc42e",
+	"name": "Backend Service",
+	"values": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-05-07T11:11:27.332Z",
+	"_postman_exported_using": "Postman/10.13.5"
+}
