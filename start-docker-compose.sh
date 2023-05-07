@@ -13,6 +13,7 @@ else
     docker-compose build
 fi
 
-docker-compose up -d
+docker-compose up react-challenge-app-backend -d
+docker-compose up react-challenge-app-frontend -d
 sleep 5 && open http://localhost:8080
 docker-compose logs -f

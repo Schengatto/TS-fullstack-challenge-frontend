@@ -18,6 +18,17 @@ services:
       - "8080:80"
     environment:
       HOST: 0.0.0.0
-      VUE_APP_API_ENDPOINT: "react-challenge-app-backend:3000"
+      REACT_APP_API_ENDPOINT: "react-challenge-app-backend:3000"
     depends_on:
       - react-challenge-app-backend
+
+  react-challenge-app-e2e:
+    container_name: enrico-challenge-app-e2e
+    build:
+      context: ./e2e
+      dockerfile: Dockerfile
+    depends_on:
+      - react-challenge-app-frontend
+    volume:
+      - react
+

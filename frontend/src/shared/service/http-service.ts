@@ -22,7 +22,7 @@ class HttpService {
 
         this.axios.interceptors.request.use(this.onRequestIntercept, this.onRequestError);
         this.axios.interceptors.response.use(this.handleSuccessResponse, this.handleErrorResponse);
-        this.axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT || "http://localhost:3000";
+        this.axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3000";
     }
 
     static isFailResponse(data: any): boolean {

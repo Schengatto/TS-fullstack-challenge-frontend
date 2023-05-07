@@ -19,11 +19,11 @@
   },
   "scripts": {
     "e2e:cypress:chrome": "cypress run --browser chrome --spec \"cypress/tests/**/*\" --headless",
-    "e2e:cypress:chrome-live": "cypress run --browser chrome --spec \"cypress/features/**/*\" --headed",
-    "e2e:cypress:edge": "cypress run --browser edge --spec \"cypress/features/**/*\" --headless",
-    "e2e:cypress:edge-live": "cypress run --browser edge --spec \"cypress/features/**/*\" --headed",
-    "e2e:cypress:firefox": "cypress run --browser firefox --spec \"cypress/features/**/*\" --headless",
-    "e2e:cypress:firefox-live": "cypress run --browser firefox --spec \"cypress/features/**/*\" --headed"
+    "e2e:cypress:chrome-live": "cypress run --browser chrome --spec \"cypress/tests/**/*\" --headed",
+    "e2e:cypress:edge": "cypress run --browser edge --spec \"cypress/tests/**/*\" --headless",
+    "e2e:cypress:edge-live": "cypress run --browser edge --spec \"cypress/tests/**/*\" --headed",
+    "e2e:cypress:firefox": "cypress run --browser firefox --spec \"cypress/tests/**/*\" --headless",
+    "e2e:cypress:firefox-live": "cypress run --browser firefox --spec \"cypress/tests/**/*\" --headed"
   },
   "eslintConfig": {
     "extends": [
