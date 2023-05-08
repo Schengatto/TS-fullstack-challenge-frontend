@@ -17,7 +17,7 @@ const Component = styled.div`
 const Footer: FunctionComponent = () => {
     return (
         <footer>
-            <Component>
+            <Component data-test="Footer__Container">
                 <div className="footer__content">Made in React with ❤️ by Enrico Schintu</div>
             </Component>
         </footer>

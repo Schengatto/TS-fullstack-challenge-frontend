@@ -18,7 +18,7 @@ const Component = styled.div`
 const Header: FunctionComponent = () => {
     return (
         <header>
-            <Component>
+            <Component data-test="Header__Container">
                 <div className="header__content">Frontend challenge</div>
             </Component>
         </header>
