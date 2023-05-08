@@ -9,7 +9,7 @@ import ordersService from "features/orders-management/services/orders-service";
 import planService from "features/orders-plan/services/plan-service";
 import { Package } from "features/orders-management/models/package";
 import PlanForm from "features/orders-plan/components/form/PlanForm";
-import PageTitle from "shared/components/PageTitle";
+import PageTitle from "shared/components/ui/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;

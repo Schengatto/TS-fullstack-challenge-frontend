@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Card from "shared/components/ui/Card";
-import PageTitle from "shared/components/PageTitle";
+import PageTitle from "shared/components/ui/PageTitle";
 import { Order } from "features/orders-management/models/order";
 import ordersService from "features/orders-management/services/orders-service";
 import OrderForm from "features/orders-management/components/form/OrderForm";

@@ -8,7 +8,7 @@ import { getUniqueValues } from "shared/utils/array-utils";
 import orderServices from "features/orders-management/services/orders-service";
 import { Order, OrderStatus } from "features/orders-management/models/order";
 import { Package } from "features/orders-management/models/package";
-import PageTitle from "shared/components/PageTitle";
+import PageTitle from "shared/components/ui/PageTitle";
 
 const Component = styled.div`
     margin: 1rem;

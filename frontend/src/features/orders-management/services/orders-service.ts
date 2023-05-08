@@ -1,6 +1,7 @@
-import { Order} from "../models/order";
+import { Order } from "../models/order";
 import { RequestBuilder } from "shared/utils/request-builder";
 import httpService from "shared/services/http-service";
+import { CreateOrderRequestPayload, UpdateOrderRequestPayload } from "./orders-services.d";
 
 class OrdersService {
     async getOrders(): Promise<Order[]> {
@@ -14,12 +15,23 @@ class OrdersService {
     }
 
     async createOrder(order: Order): Promise<Order> {
-        const request = new RequestBuilder().withURL("order").withPayload(order).build();
+        const payload: CreateOrderRequestPayload = {
+            invoiceId: order.invoiceId,
+            packages: order.packages,
+            notes: order.notes
+        };
+        const request = new RequestBuilder().withURL("order").withPayload(payload).build();
         return await httpService.post<Order>(request).then((res) => res.data);
     }
 
     async updateOrder(order: Order): Promise<void> {
-        const request = new RequestBuilder().withURL(`order/${order.id}`).build();
+        const payload: UpdateOrderRequestPayload = {
+            invoiceId: order.invoiceId,
+            packages: order.packages,
+            notes: order.notes,
+            status: order.status
+        };
+        const request = new RequestBuilder().withURL(`order/${order.id}`).withPayload(payload).build();
         await httpService.patch<Order>(request);
     }
 

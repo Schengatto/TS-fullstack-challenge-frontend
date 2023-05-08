@@ -7,7 +7,7 @@ import plansService from "features/orders-plan/services/plan-service";
 import { NotFoundError } from "shared/models/error";
 import TrackingSteps from "features/orders-plan/components/TrackingSteps";
 import Button from "shared/components/ui/Button";
-import PageTitle from "shared/components/PageTitle";
+import PageTitle from "shared/components/ui/PageTitle";
 
 export async function retrievePlan({ params }: LoaderFunctionArgs): Promise<PlanInfo> {
     if (!params.id) {

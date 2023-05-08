@@ -7,7 +7,7 @@ import OrderForm from "features/orders-management/components/form/OrderForm";
 import { Order, OrderStatus } from "features/orders-management/models/order";
 import ordersService from "features/orders-management/services/orders-service";
 import { NotFoundError } from "shared/models/error";
-import PageTitle from "shared/components/PageTitle";
+import PageTitle from "shared/components/ui/PageTitle";
 
 export async function retrieveOrder({ params }: LoaderFunctionArgs): Promise<Order> {
     if (!params.id) {

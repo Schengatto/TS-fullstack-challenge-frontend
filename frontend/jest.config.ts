@@ -5,6 +5,7 @@ import type { Config } from "@jest/types";
 process.env.TZ = "CET";
 
 const config: Config.InitialOptions = {
+    preset: "jest-puppeteer",
     testEnvironment: "jsdom",
     bail: false,
     collectCoverageFrom: [
