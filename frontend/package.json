@@ -70,7 +70,8 @@
       "src/**/*.tsx",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/",
-      "!src/index.tsx"
+      "!src/index.tsx",
+      "!src/**/*.stories.tsx"
     ],
     "coverageThreshold": {
       "global": {

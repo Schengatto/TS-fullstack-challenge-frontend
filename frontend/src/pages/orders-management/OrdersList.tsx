@@ -63,7 +63,7 @@ const OrdersList: FunctionComponent = () => {
 
     return (
         <Component>
-            <PageTitle title="Orders List" />
+            <PageTitle title="Orders List" data-test="OrdersList__Title__container" />
 
             <Card footer={addNewOrderButton}>
                 <Table

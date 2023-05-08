@@ -32,6 +32,7 @@ const PlanDetail: FunctionComponent = () => {
     const plan = useLoaderData() as PlanInfo;
     const location = useLocation();
     const navigate = useNavigate();
+    const steps = plan.steps || [];
 
     const handleBack = () => {
         const from = (location.state && location.state["from"]) ?? "/";
@@ -44,12 +45,12 @@ const PlanDetail: FunctionComponent = () => {
 
     return (
         <Component>
-            <PageTitle title={`Plan ${plan.id}`} />
+            <PageTitle title={`Plan ${plan.id}`} data-test="PlanDetail__Title__container" />
 
             <Card footer={actions}>
                 <div className="plan-path">
                     <h3>Plan Path</h3>
-                    <TrackingSteps steps={plan.steps} />
+                    <TrackingSteps steps={steps} />
                 </div>
             </Card>
         </Component>

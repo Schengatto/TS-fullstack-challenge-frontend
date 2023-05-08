@@ -88,7 +88,7 @@ const OrderDetail: FunctionComponent = () => {
         handleEditOrder(false);
     };
 
-    const viewModeTitle = (<PageTitle title={isEditMode ? `Update Order ${order.id}` : `Order Detail ${order.id}`} />);
+    const viewModeTitle = (<PageTitle title={isEditMode ? `Update Order ${order.id}` : `Order Detail ${order.id}`} data-test="OrderDetail__Title__container" />);
 
     const viewModeActions = (
         <ButtonsGroup>

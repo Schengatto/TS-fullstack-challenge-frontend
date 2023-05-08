@@ -29,7 +29,7 @@ const OrderCreate: FunctionComponent = () => {
 
     return (
         <Component>
-            <PageTitle title="Create Order" />
+            <PageTitle title="Create Order" data-test="OrderCreate__Title__container" />
 
             <Card>
                 <OrderForm
