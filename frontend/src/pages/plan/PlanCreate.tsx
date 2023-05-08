@@ -26,11 +26,18 @@ const PlanCreate: FunctionComponent = () => {
     ];
 
     useEffect(() => {
-        setIsFetchingData(true);
-        ordersService.getOrders()
-            .then((orders: Order[]) => orders.filter(order => order.status === OrderStatus.OrderPlaced))
-            .then((orders: Order[]) => setOrders(orders))
-            .finally(() => setIsFetchingData(false));
+        (async () => {
+            setIsFetchingData(true);
+            try {
+                const orders = await ordersService.getOrders();
+                const placedOrders = orders.filter(order => order.status === OrderStatus.OrderPlaced);
+                setOrders(placedOrders);
+            } catch (e) {
+                throw new Error("Error fetching orders: " + e);
+            } finally {
+                setIsFetchingData(false);
+            }
+        })();
     }, []);
 
     const navigate = useNavigate();
@@ -49,7 +56,7 @@ const PlanCreate: FunctionComponent = () => {
 
     return (
         <Component>
-            <PageTitle title="New Plan" />
+            <PageTitle title="New Plan" data-test="PlanCreate__Title__container" />
 
             <Card>
                 <Table

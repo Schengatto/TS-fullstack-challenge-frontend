@@ -10,8 +10,8 @@ export interface PageTitleProps {
     title: string;
 }
 
-const PageTitle: FunctionComponent<PageTitleProps> = ({ title }) => {
-    return (<Component><h1>{title}</h1></Component>);
+const PageTitle: FunctionComponent<PageTitleProps> = ({ title, ...rest }) => {
+    return (<Component {...rest}><h1>{title}</h1></Component>);
 };
 
 export default PageTitle;
