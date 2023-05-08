@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, CancelTokenSource, InternalAxiosRequestConfig } from "axios";
 import { buildUrlQueryParams, getUrlWithoutQueryParams, isCancelEvent } from "../utils/http";
 import { RequestInfo } from "../utils/request-builder";
+import { HttpService } from "./http-service.d";
 
 export interface GetFileResponse {
     fileName: string;
@@ -10,7 +11,7 @@ export interface GetFileResponse {
 type PendingRequests = Map<string, CancelTokenSource>;
 let _pendingRequests: PendingRequests = new Map<string, CancelTokenSource>();
 
-class HttpService {
+class AxiosHttpService implements HttpService {
     axios: AxiosInstance;
     cancelTokenSource?: CancelTokenSource;
 
@@ -116,5 +117,5 @@ class HttpService {
     }
 }
 
-const httServiceInstance = new HttpService();
+const httServiceInstance = new AxiosHttpService();
 export default httServiceInstance;

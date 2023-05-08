@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Home from "pages/Home";
 
 jest.mock("shared/services/http-service", () => ({
-  "get": jest.fn().mockImplementation(() => Promise.resolve({ data: [] }))
+  get: jest.fn(() => new Promise((res, rej) => res({ data: [] })))
 }));
 
 const mockedUsedNavigate = jest.fn();

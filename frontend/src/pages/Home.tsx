@@ -30,9 +30,13 @@ const Home: FunctionComponent = () => {
 
     const checkServerStatus = async () => {
         const request = new RequestBuilder().withURL("health").build();
-        return httpService.get<string>(request)
-            .then(() => setIsApiAvailable(true))
-            .catch(() => setIsApiAvailable(false));
+        try {
+            await httpService.get<string>(request);
+            setIsApiAvailable(true);
+        }
+        catch (error) {
+            setIsApiAvailable(false);
+        }
     };
 
     useEffect(() => {
@@ -53,11 +57,11 @@ const Home: FunctionComponent = () => {
     const onStart = () => setStart(true);
 
     const headerContent = (<img height="80" src={require("../assets/images/logistics.png")} alt="home" className={imageClassName} />);
-    const footerContent = (<Button label="Let's start" onClick={onStart} disabled={!isApiAvailable}></Button>);
+    const footerContent = (<Button label="Let's start" onClick={onStart} disabled={!isApiAvailable} data-test="Home__Button__start"></Button>);
 
     return (
         <Component>
-            <div className="server-status">
+            <div className="server-status" date-test="Home__ServerStatus__container">
                 Server Status: {isApiAvailable ? <span title="ONLINE">🟢</span> : <span title="OFFLINE">🔴</span>}
             </div>
 
