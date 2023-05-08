@@ -19,7 +19,7 @@ const Header: FunctionComponent = () => {
     return (
         <header>
             <Component>
-                <div className="header__content">Frontend challange</div>
+                <div className="header__content">Frontend challenge</div>
             </Component>
         </header>
     );
