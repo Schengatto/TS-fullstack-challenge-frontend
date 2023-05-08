@@ -17,7 +17,7 @@ const NotFound: FunctionComponent = () => {
             <div>
                 <h2>Element not found...</h2>
                 <p>
-                    <Link to="/">Go to the home page</Link>
+                    <Link to="/" data-test="NotFound__Link__home">Go to the home page</Link>
                 </p>
             </div>
         </Component>

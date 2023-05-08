@@ -27,7 +27,7 @@ const Error: FunctionComponent = () => {
             <div>
                 <h2>Oops! Something went wrong...</h2>
                 <p>
-                    <Link to="/">Go to the home page</Link>
+                    <Link to="/" data-test="Error__Link__home">Go to the home page</Link>
                 </p>
             </div>
         </Component>
