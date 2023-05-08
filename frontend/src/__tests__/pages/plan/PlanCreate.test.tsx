@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { getOrders } from "features/orders-management/services/orders-service";
 import PlanCreate from "pages/plan/PlanCreate";
 import { act } from "react-dom/test-utils";
 import { BrowserRouter } from "react-router-dom";
-// import { getOrders } from "features/orders-management/services/orders-service";
+import ordersService from "features/orders-management/services/orders-service";
 
 jest.mock("shared/services/http-service", () => ({
   get: jest.fn(() => new Promise((res) => res({ data: [] })))
@@ -28,7 +27,11 @@ jest.mock("react-router-dom", () => ({
 }));
 
 beforeEach(() => {
-  (getOrders as any).mockResolvedValue([]);
+  (ordersService.getOrders as any).mockResolvedValue([]);
+});
+
+afterEach(() => {
+  (ordersService.getOrders as any).mockClear();
 });
 
 test("renders the component", async () => {
