@@ -61,7 +61,7 @@ const Home: FunctionComponent = () => {
 
     return (
         <Component>
-            <div className="server-status" date-test="Home__ServerStatus__container">
+            <div className="server-status" data-test="Home__ServerStatus__container">
                 Server Status: {isApiAvailable ? <span title="ONLINE">🟢</span> : <span title="OFFLINE">🔴</span>}
             </div>
 
