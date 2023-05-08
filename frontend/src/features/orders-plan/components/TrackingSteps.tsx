@@ -51,14 +51,14 @@ const Step = styled.div`
     }
 `;
 
-interface TrackingStepsProps {
+export interface TrackingStepsProps {
     steps: PlanStep[]
 }
 
 const TrackingSteps: FunctionComponent<TrackingStepsProps> = ({ steps }) => {
 
     const renderStep = (step: PlanStep, index: number) => (
-        <Step key={index}>
+        <Step key={index} data-test={`TrackingSteps__Step__${index}`}>
             <div className="step-info">
                 <div className="step-circle" />
                 <div className="step-description">
@@ -71,7 +71,7 @@ const TrackingSteps: FunctionComponent<TrackingStepsProps> = ({ steps }) => {
     );
 
     return (
-        <Component>
+        <Component data-test="TrackingSteps__Container">
             {steps.map((step, index) => renderStep(step, index))}
         </Component>
     );

@@ -28,7 +28,7 @@ const FormGroup = styled.div`
     }
 `;
 
-interface PackageFormProps {
+export interface PackageFormProps {
     packageInfo: Package | null;
     readonly?: boolean;
     onCancel: () => void;

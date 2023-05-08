@@ -47,7 +47,9 @@ Per avviare l'applicazione frontend in locale sul proprio pc sarà sufficiente e
 
 Verrà aperto automaticamente il browser all'indirizzo <http://localhost:8080> che mostrerà l'applicazione React.
 
-***NB: l'applicazione client necessità del servizio backend per poter funzionare, pertanto è necessario avviare anche il servizio backend prima di accedere all'applicazione frontend.***
+***NB 1: l'applicazione client necessità del servizio backend per poter funzionare, pertanto è necessario avviare anche il servizio backend prima di accedere all'applicazione frontend.***
+
+***NB 2: Accertarsi di avere la porta 8080 libera sul proprio ambiente***
 
 #### Test unitari
 
@@ -56,6 +58,8 @@ I test unitari sono stati realizzati con l'ausilio di **jest** e **@testing-libr
 Per eseguire i test unitari in locale sul proprio pc sarà sufficiente eseguire all'interno della cartella frontend il comando:
 
 > npm run test
+
+Per ragioni di tempistiche, la copertura dei test unitari non è totale, ma ho cercato di trovare un buon compromesso fra test unitari e test E2E per assicurare che l'intera applicazione risponda come desiderato.
 
 #### Storybook
 
@@ -80,6 +84,8 @@ Questo servizio chiaramente non è completo di tutte le possibili sfaccettature 
 Per avviare l'applicazione server in locale sul proprio pc sarà sufficiente eseguire all'interno della cartella frontend il comando:
 
 > npm run serve
+
+***NB: Accertarsi di avere la porta 3000 libera sul proprio ambiente***
 
 #### Collection Postman
 
@@ -114,6 +120,8 @@ E' possibile eseguire i test E2E via docker, per farlo sarà sufficiente eseguir
 mkdir  -p  ./e2e/cypress/report;
 docker-compose  up  react-challenge-app-e2e
 ```
+
+***NB: Accertarsi di avere le porte 8080 e 3000 libere sul proprio ambiente***
 
 Una volta eseguiti i test E2E sarà possibile consultare il report generato da Cypress aprendo con un browser il file html:
 

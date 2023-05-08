@@ -16,7 +16,7 @@ class CreatePlan {
     }
 
     get startTheNewPlanButton() {
-        return cy.get("[data-test=\"Button__StartTheNewPlan\"]");
+        return cy.get("[data-test=\"PlanForm__Button__start\"]");
     }
 
     selectDepot(depotName) {

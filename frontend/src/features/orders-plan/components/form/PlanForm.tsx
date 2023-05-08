@@ -32,7 +32,7 @@ interface DepotItem {
     value: string | null;
 }
 
-interface PlanFormProps {
+export interface PlanFormProps {
     disabled?: boolean;
     onCancel: () => void;
     onSubmit: (depotId: string) => void;
@@ -75,8 +75,8 @@ const PlanForm: FunctionComponent<PlanFormProps> = ({ disabled, onCancel, onSubm
                     <Select items={items} onChange={handleDepotChange} data-test="PlanForm__Select__depot" />
                 </div>
                 <div className="form-actions">
-                    <Button label="Cancel" onClick={handleCancel} />
-                    <Button label="Start the new plan" disabled={!isFormValid} type="submit"></Button>
+                    <Button label="Cancel" onClick={handleCancel} data-test="PlanForm__Button__cancel" />
+                    <Button label="Start the new plan" disabled={!isFormValid} type="submit" data-test="PlanForm__Button__start"></Button>
                 </div>
             </form>
         </FormGroup>

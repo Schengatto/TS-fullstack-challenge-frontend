@@ -33,7 +33,7 @@ const FormGroup = styled.div`
     }
 `;
 
-interface OrderFormProps {
+export interface OrderFormProps {
     order?: Order;
     readonly?: boolean;
     onCancel: () => void;
