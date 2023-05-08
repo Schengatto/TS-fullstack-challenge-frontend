@@ -30,9 +30,7 @@ afterEach(() => {
 });
 
 test("renders the component", async () => {
-
   await act(async () => render(<BrowserRouter><OrdersList /></BrowserRouter>));
-
   await waitFor(() => {
     expect(screen.getByTestId("OrdersList__Title__container")).toBeInTheDocument();
   });

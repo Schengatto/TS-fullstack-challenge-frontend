@@ -26,15 +26,16 @@ interface SelectOption {
 export interface SelectProps {
     items: SelectOption[];
     onChange: (value: any) => void;
+    dataTest?: string;
 }
 
-const Select: FunctionComponent<SelectProps> = ({ items, onChange, ...rest }) => {
+const Select: FunctionComponent<SelectProps> = ({ items, onChange, dataTest, ...rest }) => {
     const handleChange = (e: any) => {
         onChange(e.target.value);
     };
 
     return (
-        <Component onChange={handleChange} {...rest}>
+        <Component onChange={handleChange} data-test={dataTest} {...rest}>
             {items.map((option, index) => <option key={index} value={option.value} data-test={`Select__Option__${index}`}>{option.label}</option>)}
         </Component>
     );
